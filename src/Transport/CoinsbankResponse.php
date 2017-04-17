@@ -7,7 +7,7 @@ namespace Coinsbank\Transport;
  *
  * @package Coinsbank\Transport
  */
-class Response
+class CoinsbankResponse
 {
     /**
      * @var array The response headers.

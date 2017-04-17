@@ -2,9 +2,8 @@
 
 namespace Coinsbank;
 
-use Coinsbank\Auth\Signature;
-use Coinsbank\Constant\Rest;
-use Coinsbank\Transport\HttpClient;
+use Coinsbank\Auth\CoinsbankApiContext;
+use Coinsbank\Constant\CoinsbankRest;
 
 /**
  * Class Coinsbank
@@ -14,44 +13,19 @@ use Coinsbank\Transport\HttpClient;
  */
 class Coinsbank
 {
-    const DEFAULT_CONNECTION_TIMEOUT = 30;
+    const DEFAULT_PAGE_SIZE = 50;
 
-    /**
-     * @var Signature REST-API Signature-generator.
-     */
-    protected $signature;
-
-    /**
-     * @var HttpClient Client.
-     */
-    protected $client;
+    protected $context;
 
     /**
      * Coinsbank constructor.
      *
-     * @param $key
-     * @param $secret
-     * @param array $httpSettings
-     * @param int $connectionTimeout
+     * @param CoinsbankApiContext $context
      */
-    public function __construct(
-        $key,
-        $secret,
-        $httpSettings = [],
-        $connectionTimeout = self::DEFAULT_CONNECTION_TIMEOUT
-    ) {
-        $this->signature = new Signature($key, $secret);
-        $httpSettings = array_merge($httpSettings, array(
-            'curl' => array(
-                CURLOPT_TIMEOUT        => $connectionTimeout,
-                CURLOPT_SSL_VERIFYHOST => false,
-                CURLOPT_SSL_VERIFYPEER => false,
-                // CURLOPT_PROXY          => '',
-                //  CURLOPT_FORBID_REUSE   => true,
-                CURLOPT_RETURNTRANSFER => true,
-            )
-        ));
-        $this->client = new HttpClient($httpSettings);
+    public function __construct(CoinsbankApiContext $context)
+    {
+        $this->context = $context;
+
     }
 
     /**
@@ -59,12 +33,12 @@ class Coinsbank
      *
      * @param $uri
      * @param array $data
-     * @return Transport\Response
+     * @return Transport\CoinsbankResponse
      */
     public function delete($uri, array $data = [])
     {
         return $this->sendRequest(
-            Rest::DELETE,
+            CoinsbankRest::DELETE,
             $uri,
             array('form_params' => $data)
         );
@@ -75,25 +49,27 @@ class Coinsbank
      *
      * @param $uri
      * @param array $data
-     * @return Transport\Response
+     * @return Transport\CoinsbankResponse
      */
     public function get($uri, array $data = [])
     {
         return $this->sendRequest(
-            Rest::GET,
+            CoinsbankRest::GET,
             $uri,
             array('query' => $data)
         );
     }
 
     /**
-     * Returns HttpClient
+     * Returns prepared path with ID.
      *
-     * @return HttpClient
+     * @param $path
+     * @param $id
+     * @return string
      */
-    public function getClient()
+    public function getPathWithId($path, $id)
     {
-        return $this->client;
+        return sprintf('%s/_$s', $path, $id);
     }
 
     /**
@@ -102,12 +78,12 @@ class Coinsbank
      * @param $uri
      * @param array $data
      * @param bool $isMultipart
-     * @return Transport\Response
+     * @return Transport\CoinsbankResponse
      */
     public function post($uri, array $data = [], $isMultipart = false)
     {
         return $this->sendRequest(
-            Rest::POST,
+            CoinsbankRest::POST,
             $uri,
             $isMultipart ? array('multipart' => $data) : array('form_params' => $data)
         );
@@ -118,12 +94,12 @@ class Coinsbank
      *
      * @param $uri
      * @param array $data
-     * @return Transport\Response
+     * @return Transport\CoinsbankResponse
      */
     public function put($uri, array $data = [])
     {
         return $this->sendRequest(
-            Rest::PUT,
+            CoinsbankRest::PUT,
             $uri,
             array('form_params' => $data)
         );
@@ -136,15 +112,15 @@ class Coinsbank
      * @param $method
      * @param $uri
      * @param array $data
-     * @return Transport\Response
+     * @return Transport\CoinsbankResponse
      */
     public function sendRequest(
         $method,
         $uri,
         array $data = array()
     ) {
-        $data['headers'] = array('Content-Type' => 'application/json', 'Key' => $this->signature->getKey(), 'Signature' => $this->signature->generate($data, $uri, $method));
+        $data['headers'] = array('Content-Type' => 'application/json', 'Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $uri, $method));
 
-        return $this->client->send($method, $uri, $data);
+        return $this->context->getClient()->send($method, CoinsbankRest::REST_API_URI . $uri, $data);
     }
 }

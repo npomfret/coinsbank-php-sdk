@@ -7,7 +7,7 @@ namespace Coinsbank\Auth;
  *
  * @package Coinsbank\Auth
  */
-class Signature
+class CoinsbankSignature
 {
     /**
      * @var string REST-API key

@@ -11,7 +11,7 @@ use GuzzleHttp\Exception\RequestException;
  *
  * @package Coinsbank\Transport
  */
-class HttpClient
+class CoinsbankHttpClient
 {
     protected $guzzleClient;
 
@@ -31,7 +31,7 @@ class HttpClient
      * @param $method
      * @param $uri
      * @param $options
-     * @return Response
+     * @return CoinsbankResponse
      * @throws CoinsbankRequestException
      */
     public function send($method, $uri, $options)
@@ -45,6 +45,6 @@ class HttpClient
         $responseBody = $response->getBody()->getContents();
         $httpResponseCode = $response->getStatusCode();
 
-        return new Response($responseHeaders, $responseBody, $httpResponseCode);
+        return new CoinsbankResponse($responseHeaders, $responseBody, $httpResponseCode);
     }
 }

@@ -7,10 +7,12 @@ namespace Coinsbank\Constant;
  *
  * @package Coinsbank\Constant
  */
-class Rest
+class CoinsbankRest
 {
     const GET = 'get';
     const POST = 'post';
     const PUT = 'put';
     const DELETE = 'delete';
+
+    const REST_API_URI = "https://coinsbank.com/sapi";
 }

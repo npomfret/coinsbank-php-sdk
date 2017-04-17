@@ -9,7 +9,7 @@ use Coinsbank\Coinsbank;
  *
  * @package Coinsbank\Api
  */
-class Merchant extends Coinsbank
+class CoinsbankMerchant extends Coinsbank
 {
 
 }

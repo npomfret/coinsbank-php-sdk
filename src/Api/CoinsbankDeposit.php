@@ -5,11 +5,12 @@ namespace Coinsbank\Api;
 use Coinsbank\Coinsbank;
 
 /**
- * Class Withdrawal
+ * Class Deposit
  *
  * @package Coinsbank\Api
+ *
  */
-class Withdrawal extends Coinsbank
+class CoinsbankDeposit extends Coinsbank
 {
 
 }
