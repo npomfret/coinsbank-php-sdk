@@ -22,15 +22,6 @@ class HttpClient
      */
     public function __construct($options = [])
     {
-        $options = array_merge([
-            'curl' => [
-                CURLOPT_TIMEOUT        => 30,
-                CURLOPT_SSL_VERIFYHOST => false,
-                CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_PROXY          => '',
-                CURLOPT_FORBID_REUSE   => true,
-            ]
-        ], $options);
         $this->guzzleClient = new Client($options);
     }
 
@@ -39,14 +30,14 @@ class HttpClient
      *
      * @param $method
      * @param $uri
-     * @param $body
+     * @param $options
      * @return Response
      * @throws CoinsbankRequestException
      */
-    public function send($method, $uri, $body)
+    public function send($method, $uri, $options)
     {
         try {
-            $response = $this->guzzleClient->request($method, $uri, $body);
+            $response = $this->guzzleClient->request($method, $uri, $options);
         } catch (RequestException $e) {
             throw new CoinsbankRequestException($uri, $e->getResponse(), $e->getMessage(), $e->getCode(), $e);
         }

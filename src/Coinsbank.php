@@ -2,6 +2,7 @@
 
 namespace Coinsbank;
 
+use Coinsbank\Auth\Signature;
 use Coinsbank\Constant\Rest;
 use Coinsbank\Transport\HttpClient;
 
@@ -13,15 +14,12 @@ use Coinsbank\Transport\HttpClient;
  */
 class Coinsbank
 {
-    /**
-     * @var string REST-API key.
-     */
-    protected $key;
+    const DEFAULT_CONNECTION_TIMEOUT = 30;
 
     /**
-     * @var string REST-API secret.
+     * @var Signature REST-API Signature-generator.
      */
-    protected $secret;
+    protected $signature;
 
     /**
      * @var HttpClient Client.
@@ -34,43 +32,57 @@ class Coinsbank
      * @param $key
      * @param $secret
      * @param array $httpSettings
+     * @param int $connectionTimeout
      */
-    public function __construct($key, $secret, $httpSettings = [])
-    {
-        $this->key = $key;
-        $this->secret = $secret;
+    public function __construct(
+        $key,
+        $secret,
+        $httpSettings = [],
+        $connectionTimeout = self::DEFAULT_CONNECTION_TIMEOUT
+    ) {
+        $this->signature = new Signature($key, $secret);
+        $httpSettings = array_merge($httpSettings, array(
+            'curl' => array(
+                CURLOPT_TIMEOUT        => $connectionTimeout,
+                CURLOPT_SSL_VERIFYHOST => false,
+                CURLOPT_SSL_VERIFYPEER => false,
+                // CURLOPT_PROXY          => '',
+                //  CURLOPT_FORBID_REUSE   => true,
+                CURLOPT_RETURNTRANSFER => true,
+            )
+        ));
         $this->client = new HttpClient($httpSettings);
     }
 
     /**
      * Sends a DELETE request to REST-API and returns the result.
      *
-     * @param $endpoint
+     * @param $uri
      * @param array $data
      * @return Transport\Response
      */
-    public function delete($endpoint, array $data = [])
+    public function delete($uri, array $data = [])
     {
         return $this->sendRequest(
             Rest::DELETE,
-            $endpoint,
-            ['form_params' => $data]
+            $uri,
+            array('form_params' => $data)
         );
     }
 
     /**
      * Sends a GET request to REST-API and returns the result.
      *
-     * @param $endpoint
+     * @param $uri
      * @param array $data
      * @return Transport\Response
      */
-    public function get($endpoint, array $data = [])
+    public function get($uri, array $data = [])
     {
         return $this->sendRequest(
             Rest::GET,
-            $endpoint,
-            ['query' => $data]
+            $uri,
+            array('query' => $data)
         );
     }
 
@@ -97,7 +109,7 @@ class Coinsbank
         return $this->sendRequest(
             Rest::POST,
             $uri,
-            $isMultipart ? ['multipart' => $data] : ['form_params' => $data]
+            $isMultipart ? array('multipart' => $data) : array('form_params' => $data)
         );
     }
 
@@ -113,7 +125,7 @@ class Coinsbank
         return $this->sendRequest(
             Rest::PUT,
             $uri,
-            ['form_params' => $data]
+            array('form_params' => $data)
         );
     }
 
@@ -129,8 +141,10 @@ class Coinsbank
     public function sendRequest(
         $method,
         $uri,
-        array $data = []
+        array $data = array()
     ) {
+        $data['headers'] = array('Content-Type' => 'application/json', 'Key' => $this->signature->getKey(), 'Signature' => $this->signature->generate($data, $uri, $method));
+
         return $this->client->send($method, $uri, $data);
     }
 }
