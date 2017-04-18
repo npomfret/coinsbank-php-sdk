@@ -2,7 +2,6 @@
 
 namespace Coinsbank;
 
-use Coinsbank\Auth\CoinsbankApiContext;
 use Coinsbank\Constant\CoinsbankRest;
 
 /**

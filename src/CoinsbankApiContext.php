@@ -1,7 +1,8 @@
 <?php
 
-namespace Coinsbank\Auth;
+namespace Coinsbank;
 
+use Coinsbank\Auth\CoinsbankSignature;
 use Coinsbank\Transport\CoinsbankHttpClient;
 
 /**
