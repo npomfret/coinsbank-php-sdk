@@ -13,7 +13,7 @@ use Coinsbank\Transport\CoinsbankHttpClient;
 class CoinsbankApiContext
 {
     const DEFAULT_CONNECTION_TIMEOUT = 10;
-    const DEFAULT_CURL_TIMEOUT = 30;
+    const DEFAULT_CURL_TIMEOUT = 60;
 
     const MODE_SANDBOX = 0;
     const MODE_PRODUCTION = 1;
@@ -28,7 +28,7 @@ class CoinsbankApiContext
 
     protected $signature;
 
-    public function __construct($key, $secret, $httpSettings = [], $mode = self::MODE_PRODUCTION)
+    public function __construct($key, $secret, $httpSettings = array(), $mode = self::MODE_PRODUCTION)
     {
         $this->key = $key;
         $this->mode = $mode;

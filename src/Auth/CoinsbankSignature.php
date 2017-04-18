@@ -32,9 +32,20 @@ class CoinsbankSignature
     }
 
     /**
+     * Extracts body part of request data.
+     *
+     * @param array $data
+     * @return mixed
+     */
+    protected function getBody($data)
+    {
+        return !is_array($data) ? array() : (isset($data['json']) ? $data['json'] : (isset($data['multipart']) ? $data['multipart'] : isset($data['query']) ? $data['query'] : $data));
+    }
+
+    /**
      * Extracts path from URI.
      *
-     * @param $pathInfo
+     * @param string $pathInfo
      * @return bool|string
      */
     protected function getPath($pathInfo)
@@ -43,22 +54,11 @@ class CoinsbankSignature
     }
 
     /**
-     * Extracts body part of request data.
-     *
-     * @param $data
-     * @return mixed
-     */
-    protected function getBody($data)
-    {
-        return !is_array($data) ? [] : (isset($data['json']) ? $data['json'] : (isset($data['multipart']) ? $data['multipart'] : isset($data['query']) ? $data['query'] : $data));
-    }
-
-    /**
      * Generates signature for auth.
      *
-     * @param $data
-     * @param $uri
-     * @param $requestType - POST|GET|PUT|DELETE
+     * @param array $data
+     * @param string $uri
+     * @param string $requestType POST|GET|PUT|DELETE
      * @return string
      */
     public function generate($data, $uri, $requestType)
@@ -69,7 +69,7 @@ class CoinsbankSignature
     }
 
     /**
-     * Returns REST-API key
+     * Returns REST-API key.
      *
      * @return string
      */

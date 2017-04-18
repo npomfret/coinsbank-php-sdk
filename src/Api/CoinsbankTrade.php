@@ -34,7 +34,7 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Cancels trade order.
      *
-     * @param $id
+     * @param string $id
      * @return CoinsbankResponse
      */
     public function cancelOrder($id)
@@ -97,7 +97,7 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Return trade order info.
      *
-     * @param $id
+     * @param string $id
      * @return CoinsbankResponse
      */
     public function getOrder($id)
@@ -117,7 +117,7 @@ class CoinsbankTrade extends Coinsbank
     public function getOrders(
         $page = 0,
         $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE,
-        $filter = [],
+        $filter = array(),
         $exportPDF = false
     ) {
         return $this->get(self::URL, compact('page', 'pageSize', 'filter', 'exportPDF'));
@@ -126,7 +126,7 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Returns order closing history.
      *
-     * @param $id
+     * @param string $id
      * @return CoinsbankResponse
      */
     public function orderHistory($id)
@@ -137,8 +137,8 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Updates trade order (resets tp, sl, sltp).
      *
-     * @param $id
-     * @param $action
+     * @param string $id
+     * @param string $action
      * @return CoinsbankResponse
      */
     public function updateOrder($id, $action)

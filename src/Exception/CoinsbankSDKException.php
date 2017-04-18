@@ -3,7 +3,7 @@
 namespace Coinsbank\Exception;
 
 /**
- * Class CoinsbankRequestException
+ * Class CoinsbankSDKException
  *
  * @package Coinsbank\Exception
  */

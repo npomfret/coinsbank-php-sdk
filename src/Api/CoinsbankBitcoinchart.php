@@ -18,7 +18,7 @@ class CoinsbankBitcoinchart extends Coinsbank
     /**
      * Gets trade history.
      *
-     * @param $currencyPair
+     * @param string $currencyPair
      * @return \Coinsbank\Transport\CoinsbankResponse
      */
     public function getTrades($currencyPair)
@@ -29,7 +29,7 @@ class CoinsbankBitcoinchart extends Coinsbank
     /**
      * Gets orderbook.
      *
-     * @param $currencyPair
+     * @param string $currencyPair
      * @return \Coinsbank\Transport\CoinsbankResponse
      */
     public function getOrderBook($currencyPair)
@@ -38,10 +38,10 @@ class CoinsbankBitcoinchart extends Coinsbank
     }
 
     /**
-     * Sends a request to REST-API and returns the result.
+     * Sends a request to API and returns the result.
      *
-     * @param $method
-     * @param $path
+     * @param string $method
+     * @param string $path
      * @param array $data
      * @return CoinsbankResponse
      */

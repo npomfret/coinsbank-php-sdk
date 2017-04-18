@@ -10,14 +10,14 @@ namespace Coinsbank\Transport;
 class CoinsbankResponse
 {
     /**
-     * @var array The response headers.
-     */
-    protected $headers;
-
-    /**
      * @var string The response body.
      */
     protected $body;
+
+    /**
+     * @var array The response headers.
+     */
+    protected $headers;
 
     /**
      * @var int The HTTP status response code.
@@ -27,9 +27,9 @@ class CoinsbankResponse
     /**
      * Response constructor.
      *
-     * @param $headers
-     * @param $body
-     * @param null $httpResponseCode
+     * @param array $headers
+     * @param string $body
+     * @param int|null $httpResponseCode
      */
     public function __construct($headers, $body, $httpResponseCode = null)
     {
@@ -51,7 +51,7 @@ class CoinsbankResponse
     /**
      * Returns the JSON-decoded body
      *
-     * @return string
+     * @return array
      */
     public function getBodyDecoded()
     {

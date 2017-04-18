@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class CoinsbankRequestException extends \Exception
 {
-    /** @var  ResponseInterface */
+    /** @var ResponseInterface */
     protected $response;
 
     /**

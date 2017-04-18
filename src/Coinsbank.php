@@ -3,6 +3,7 @@
 namespace Coinsbank;
 
 use Coinsbank\Constant\CoinsbankRest;
+use Coinsbank\Transport\CoinsbankResponse;
 
 /**
  * Class Coinsbank
@@ -45,6 +46,18 @@ class Coinsbank
     }
 
     /**
+     * Returns prepared path with ID.
+     *
+     * @param string $path
+     * @param string $id
+     * @return string
+     */
+    protected function getPathWithId($path, $id)
+    {
+        return sprintf('%s/_%s', $path, $id);
+    }
+
+    /**
      * Returns proper REST-API uri.
      *
      * @return string
@@ -65,25 +78,13 @@ class Coinsbank
     }
 
     /**
-     * Returns prepared path with ID.
-     *
-     * @param $path
-     * @param $id
-     * @return string
-     */
-    protected function getPathWithId($path, $id)
-    {
-        return sprintf('%s/_%s', $path, $id);
-    }
-
-    /**
      * Sends a DELETE request to REST-API and returns the result.
      *
-     * @param $uri
+     * @param string $uri
      * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
-    public function delete($uri, array $data = [])
+    public function delete($uri, array $data = array())
     {
         return $this->sendRequest(
             CoinsbankRest::DELETE,
@@ -95,11 +96,11 @@ class Coinsbank
     /**
      * Sends a GET request to REST-API and returns the result.
      *
-     * @param $uri
+     * @param string $uri
      * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
-    public function get($uri, array $data = [])
+    public function get($uri, array $data = array())
     {
         return $this->sendRequest(
             CoinsbankRest::GET,
@@ -111,12 +112,12 @@ class Coinsbank
     /**
      * Sends a POST request to REST-API and returns the result.
      *
-     * @param $uri
+     * @param string $uri
      * @param array $data
      * @param bool $isMultipart
-     * @return Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
-    public function post($uri, array $data = [], $isMultipart = false)
+    public function post($uri, array $data = array(), $isMultipart = false)
     {
         return $this->sendRequest(
             CoinsbankRest::POST,
@@ -128,11 +129,11 @@ class Coinsbank
     /**
      * Sends a DELETE request to REST-API and returns the result.
      *
-     * @param $uri
+     * @param string $uri
      * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
-    public function put($uri, array $data = [])
+    public function put($uri, array $data = array())
     {
         return $this->sendRequest(
             CoinsbankRest::PUT,
@@ -144,10 +145,10 @@ class Coinsbank
     /**
      * Sends a request to REST-API and returns the result.
      *
-     * @param $method
-     * @param $path
+     * @param string $method
+     * @param string $path
      * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function sendRequest(
         $method,

@@ -2,8 +2,6 @@
 
 namespace Coinsbank\Filter;
 
-use Coinsbank\Exception\CoinsbankSDKException;
-
 /**
  * Class CoinsbankTradeFilter
  *
@@ -31,7 +29,7 @@ use Coinsbank\Exception\CoinsbankSDKException;
  * @method CoinsbankTradeFilter setTriggeredBy($value)
  * @method CoinsbankTradeFilter setType($value)
  */
-class CoinsbankTradeFilter
+class CoinsbankTradeFilter extends CoinsbankFilter
 {
     /**
      * @var string|string[]
@@ -142,23 +140,4 @@ class CoinsbankTradeFilter
      * @var integer|integer[]
      */
     public $type;
-
-
-    public function __call($name, $arguments)
-    {
-        if (strpos($name, 'set') === 0 && strlen($name) > 3) {
-            $property = lcfirst(substr($name, 3));
-            if (property_exists($this, $property)) {
-                if (isset($arguments[0])) {
-                    $this->$property = $arguments[0];
-                } else {
-                    throw new CoinsbankSDKException('No value for property "' . $property . '""');
-                }
-
-                return $this;
-            } else {
-                throw new CoinsbankSDKException('Unknown property "' . $property . '""');
-            }
-        }
-    }
 }
