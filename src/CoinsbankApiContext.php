@@ -15,33 +15,55 @@ class CoinsbankApiContext
     const DEFAULT_CONNECTION_TIMEOUT = 10;
     const DEFAULT_CURL_TIMEOUT = 30;
 
+    const MODE_SANDBOX = 0;
+    const MODE_PRODUCTION = 1;
+
     protected $httpConfig;
 
     protected $key;
+
+    protected $mode;
 
     protected $secret;
 
     protected $signature;
 
-    public function __construct($key, $secret, $httpSettings = [])
+    public function __construct($key, $secret, $httpSettings = [], $mode = self::MODE_PRODUCTION)
     {
         $this->key = $key;
+        $this->mode = $mode;
         $this->secret = $secret;
         $this->signature = new CoinsbankSignature($key, $secret);
         $httpSettings = array(
             'curl' => $httpSettings + array(
                     CURLOPT_CONNECTTIMEOUT => self::DEFAULT_CONNECTION_TIMEOUT,
                     CURLOPT_TIMEOUT        => self::DEFAULT_CURL_TIMEOUT,
-                    CURLOPT_SSL_VERIFYHOST => false,
-                    CURLOPT_SSL_VERIFYPEER => false,
                     CURLOPT_USERAGENT      => 'Coinsbank-PHP-SDK',
-                    // CURLOPT_PROXY          => '',
-                    //  CURLOPT_FORBID_REUSE   => true,
                     CURLOPT_RETURNTRANSFER => true,
 
                 )
         );
         $this->client = new CoinsbankHttpClient($httpSettings);
+    }
+
+    /**
+     * Returns http-client.
+     *
+     * @return CoinsbankHttpClient
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Return mode.
+     *
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
     }
 
     /**
@@ -67,10 +89,5 @@ class CoinsbankApiContext
     public function getSignature()
     {
         return $this->signature;
-    }
-
-    public function getClient()
-    {
-        return $this->client;
     }
 }

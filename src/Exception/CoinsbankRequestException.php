@@ -23,7 +23,7 @@ class CoinsbankRequestException extends \Exception
      * @param int $code
      * @param \Throwable|null $previous
      */
-    public function __construct($uri, $response, $message = "Request Error", $code = 0, \Throwable $previous = null)
+    public function __construct($uri, $response, $message = "Request Error", $code = 0, $previous = null)
     {
         parent::__construct($message, $code, $previous);
         $this->response = $response;

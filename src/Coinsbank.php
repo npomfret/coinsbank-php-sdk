@@ -12,8 +12,6 @@ use Coinsbank\Constant\CoinsbankRest;
  */
 class Coinsbank
 {
-    const DEFAULT_PAGE_SIZE = 50;
-
     protected $context;
 
     /**
@@ -24,7 +22,58 @@ class Coinsbank
     public function __construct(CoinsbankApiContext $context)
     {
         $this->context = $context;
+    }
 
+    /**
+     * Returns proper API uri.
+     *
+     * @return string
+     */
+    protected function getApiUri()
+    {
+        switch ($this->context->getMode()) {
+            case CoinsbankApiContext::MODE_SANDBOX:
+                $uri = CoinsbankRest::REST_API_SANDBOX_URI;
+                break;
+            case CoinsbankApiContext::MODE_PRODUCTION:
+            default:
+                $uri = CoinsbankRest::REST_API_URI;
+                break;
+        }
+
+        return $uri;
+    }
+
+    /**
+     * Returns proper REST-API uri.
+     *
+     * @return string
+     */
+    protected function getSapiUri()
+    {
+        switch ($this->context->getMode()) {
+            case CoinsbankApiContext::MODE_SANDBOX:
+                $uri = CoinsbankRest::REST_SAPI_SANDBOX_URI;
+                break;
+            case CoinsbankApiContext::MODE_PRODUCTION:
+            default:
+                $uri = CoinsbankRest::REST_SAPI_URI;
+                break;
+        }
+
+        return $uri;
+    }
+
+    /**
+     * Returns prepared path with ID.
+     *
+     * @param $path
+     * @param $id
+     * @return string
+     */
+    protected function getPathWithId($path, $id)
+    {
+        return sprintf('%s/_%s', $path, $id);
     }
 
     /**
@@ -39,7 +88,7 @@ class Coinsbank
         return $this->sendRequest(
             CoinsbankRest::DELETE,
             $uri,
-            array('form_params' => $data)
+            array('json' => $data)
         );
     }
 
@@ -60,18 +109,6 @@ class Coinsbank
     }
 
     /**
-     * Returns prepared path with ID.
-     *
-     * @param $path
-     * @param $id
-     * @return string
-     */
-    public function getPathWithId($path, $id)
-    {
-        return sprintf('%s/_$s', $path, $id);
-    }
-
-    /**
      * Sends a POST request to REST-API and returns the result.
      *
      * @param $uri
@@ -84,7 +121,7 @@ class Coinsbank
         return $this->sendRequest(
             CoinsbankRest::POST,
             $uri,
-            $isMultipart ? array('multipart' => $data) : array('form_params' => $data)
+            $isMultipart ? array('multipart' => $data) : array('json' => $data)
         );
     }
 
@@ -100,26 +137,25 @@ class Coinsbank
         return $this->sendRequest(
             CoinsbankRest::PUT,
             $uri,
-            array('form_params' => $data)
+            array('json' => $data)
         );
     }
-
 
     /**
      * Sends a request to REST-API and returns the result.
      *
      * @param $method
-     * @param $uri
+     * @param $path
      * @param array $data
      * @return Transport\CoinsbankResponse
      */
     public function sendRequest(
         $method,
-        $uri,
+        $path,
         array $data = array()
     ) {
-        $data['headers'] = array('Content-Type' => 'application/json', 'Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $uri, $method));
+        $data['headers'] = array('Content-Type' => 'application/json', 'Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $path, $method));
 
-        return $this->context->getClient()->send($method, CoinsbankRest::REST_API_URI . $uri, $data);
+        return $this->context->getClient()->send($method, $this->getSapiUri() . $path, $data);
     }
 }

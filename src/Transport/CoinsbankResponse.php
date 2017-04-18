@@ -53,9 +53,9 @@ class CoinsbankResponse
      *
      * @return string
      */
-    public function getBodyAsJSON()
+    public function getBodyDecoded()
     {
-        return json_encode($this->body, true);
+        return json_decode($this->body, true);
     }
 
     /**

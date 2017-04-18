@@ -50,7 +50,7 @@ class CoinsbankSignature
      */
     protected function getBody($data)
     {
-        return !is_array($data) ? [] : (isset($data['form_params']) ? $data['form_params'] : (isset($data['multipart']) ? $data['multipart'] : isset($data['query']) ? $data['query'] : $data));
+        return !is_array($data) ? [] : (isset($data['json']) ? $data['json'] : (isset($data['multipart']) ? $data['multipart'] : isset($data['query']) ? $data['query'] : $data));
     }
 
     /**
