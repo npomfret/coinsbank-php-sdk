@@ -18,10 +18,11 @@ class CoinsbankFile extends CoinsbankSapi
      *
      * @param string $fileKey File key, in response after uploading file, param "key".
      * @param string $fileName File name, in response after uploading file, param "filename".
+     * @return \Coinsbank\Transport\CoinsbankResponse
      */
     public function deleteFile($fileKey, $fileName)
     {
-        $this->delete(self::URL, array('key' => $fileKey, 'filename' => $fileName));
+        return $this->delete(self::URL, array('key' => $fileKey, 'filename' => $fileName));
     }
 
     /**
@@ -29,10 +30,11 @@ class CoinsbankFile extends CoinsbankSapi
      *
      * @param string $fileKey File key, in response after uploading file, param "key".
      * @param string $fileName File name, in response after uploading file, param "filename".
+     * @return \Coinsbank\Transport\CoinsbankResponse
      */
     public function getFile($fileKey, $fileName)
     {
-        $this->get(self::URL, array('key' => $fileKey, 'filename' => $fileName));
+        return $this->get(self::URL, array('key' => $fileKey, 'filename' => $fileName));
     }
 
     /**
@@ -40,10 +42,11 @@ class CoinsbankFile extends CoinsbankSapi
      *
      * @param string $fileName
      * @param string $fileContent
+     * @return \Coinsbank\Transport\CoinsbankResponse
      */
     public function uploadFile($fileName, $fileContent)
     {
-        $this->post(self::URL, array(array('name' => 'FileModel[picture]', 'filename' => $fileName, 'contents' => $fileContent)), array('Content-Type' => 'application/octet-stream'), true);
+        return $this->post(self::URL, array(array('name' => 'FileModel[picture]', 'filename' => $fileName, 'contents' => $fileContent)), array('Content-Type' => 'application/octet-stream'), true);
     }
 
 }

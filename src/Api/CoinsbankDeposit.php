@@ -81,10 +81,11 @@ class CoinsbankDeposit extends CoinsbankSapi
      * Returns deposit document data.
      *
      * @param string $id Deposit ID.
+     * @return CoinsbankResponse
      */
     public function getDocument($id)
     {
-        $this->get($this->getPathWithId(self::URL_FSC_VERIFICATION, $id));
+        return $this->get($this->getPathWithId(self::URL_FSC_VERIFICATION, $id));
     }
 
     /**
@@ -105,9 +106,10 @@ class CoinsbankDeposit extends CoinsbankSapi
      *
      * @param $id
      * @param array|CoinsbankFileModel $fileData
+     * @return CoinsbankResponse
      */
     public function uploadDocument($id, $fileData)
     {
-        $this->put($this->getPathWithId(self::URL_FSC_VERIFICATION, $id), array('FileData' => $fileData));
+        return $this->put($this->getPathWithId(self::URL_FSC_VERIFICATION, $id), array('FileData' => $fileData));
     }
 }
