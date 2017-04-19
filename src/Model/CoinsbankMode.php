@@ -1,15 +1,15 @@
 <?php
 
-namespace Coinsbank\Filter;
+namespace Coinsbank\Model;
 
 use Coinsbank\Exception\CoinsbankSDKException;
 
 /**
- * Class CoinsbankFilter
+ * Class CoinsbankModel
  *
- * @package Coinsbank\Filter
+ * @package Coinsbank\Model
  */
-class CoinsbankFilter
+class CoinsbankModel
 {
     /**
      * Set property value.

@@ -2,7 +2,7 @@
 
 namespace Coinsbank\Api;
 
-use Coinsbank\Coinsbank;
+use Coinsbank\CoinsbankSapi;
 use Coinsbank\Transport\CoinsbankResponse;
 
 /**
@@ -10,7 +10,7 @@ use Coinsbank\Transport\CoinsbankResponse;
  *
  * @package Coinsbank\Api
  */
-class CoinsbankHead extends Coinsbank
+class CoinsbankHead extends CoinsbankSapi
 {
     const URL = '/head';
 

@@ -2,15 +2,14 @@
 
 namespace Coinsbank\Api;
 
-use Coinsbank\Coinsbank;
-use Coinsbank\Transport\CoinsbankResponse;
+use Coinsbank\CoinsbankApi;
 
 /**
  * Class CoinsbankBitcoinchart
  *
  * @package Coinsbank\Api
  */
-class CoinsbankBitcoinchart extends Coinsbank
+class CoinsbankBitcoinchart extends CoinsbankApi
 {
     const URL_TRADES = '/bitcoincharts/trades';
     const URL_ORDERBOOK = '/bitcoincharts/orderbook';
@@ -35,23 +34,5 @@ class CoinsbankBitcoinchart extends Coinsbank
     public function getOrderBook($currencyPair)
     {
         return $this->get(self::URL_ORDERBOOK . '/' . $currencyPair);
-    }
-
-    /**
-     * Sends a request to API and returns the result.
-     *
-     * @param string $method
-     * @param string $path
-     * @param array $data
-     * @return CoinsbankResponse
-     */
-    public function sendRequest(
-        $method,
-        $path,
-        array $data = array()
-    ) {
-        $data['headers'] = array('Content-Type' => 'application/json');
-
-        return $this->context->getClient()->send($method, $this->getApiUri() . $path, $data);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Coinsbank\Filter;
 
+use Coinsbank\Model\CoinsbankModel;
+
 /**
  * Class CoinsbankTradeFilter
  *
@@ -29,7 +31,7 @@ namespace Coinsbank\Filter;
  * @method CoinsbankTradeFilter setTriggeredBy($value)
  * @method CoinsbankTradeFilter setType($value)
  */
-class CoinsbankTradeFilter extends CoinsbankFilter
+class CoinsbankTradeFilter extends CoinsbankModel
 {
     /**
      * @var string|string[]

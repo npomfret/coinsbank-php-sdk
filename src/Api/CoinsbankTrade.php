@@ -2,7 +2,7 @@
 
 namespace Coinsbank\Api;
 
-use Coinsbank\Coinsbank;
+use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
 use Coinsbank\Filter\CoinsbankTradeFilter;
 use Coinsbank\Transport\CoinsbankResponse;
@@ -12,7 +12,7 @@ use Coinsbank\Transport\CoinsbankResponse;
  *
  * @package Coinsbank\Api
  */
-class CoinsbankTrade extends Coinsbank
+class CoinsbankTrade extends CoinsbankSapi
 {
     const URL = '/trade';
     const URL_HISTORY = '/trade/closing';
