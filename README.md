@@ -25,10 +25,10 @@ $contextAuthorized = new CoinsbankApiContext('{api-key}', '{api-secret}', [], Co
 $headApiAuth = new CoinsbankHead($contextAuthorized);
 $response = $headApiAuth->getData();
 
-$walletApi = new CoinsbankWallet($context);
+$walletApi = new CoinsbankWallet($contextAuthorized);
 $response = $walletApi->getList();
 
-$tradeApi = new CoinsbankTrade($context);
+$tradeApi = new CoinsbankTrade($contextAuthorized);
 $tradeFilter = (new CoinsbankTradeFilter())->setStatus(1);//or array('status' => 1)
 $response = $api->getOrders(0, 50, $tradeFilter, false);
 //file_put_contents('orders.pdf', $response->getBody());//e.g. for pdf export

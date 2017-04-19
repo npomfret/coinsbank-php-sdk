@@ -59,7 +59,7 @@ class CoinsbankSapi extends Coinsbank
         array $data = array(),
         array $headers = array()
     ) {
-        $data['headers'] = array_replace(array('Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $path, $method)), $headers);
+        $headers = array_replace(array('Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $path, $method)), $headers);
 
         return parent::sendRequest($method, $path, $data, $headers);
     }
