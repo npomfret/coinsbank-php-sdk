@@ -15,8 +15,8 @@ use Coinsbank\Transport\CoinsbankResponse;
 class CoinsbankTrade extends CoinsbankSapi
 {
     const URL = '/trade';
-    const URL_HISTORY = '/trade/closing';
-    const URL_FEE = '/trade/fee';
+    const URL_HISTORY = self::URL . '/closing';
+    const URL_FEE = self::URL . '/fee';
 
     const DIRECTION_BUY = 'buy';
     const DIRECTION_SELL = 'sell';
@@ -97,7 +97,7 @@ class CoinsbankTrade extends CoinsbankSapi
     /**
      * Return trade order info.
      *
-     * @param string $id
+     * @param string $id Trade order ID
      * @return CoinsbankResponse
      */
     public function getOrder($id)

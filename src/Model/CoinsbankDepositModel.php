@@ -2,6 +2,8 @@
 
 namespace Coinsbank\Model;
 
+use Coinsbank\Api\CoinsbankFile;
+
 /**
  * Class CoinsbankDepositModel
  *
@@ -22,57 +24,60 @@ namespace Coinsbank\Model;
 class CoinsbankDepositModel extends CoinsbankModel
 {
     /**
-     * @var string
+     * @var string Wallet for income.
      */
     public $accountId;
 
     /**
-     * @var string
+     * @var string Phone number for QWI.
      */
     public $address;
 
     /**
-     * @var double
+     * @var double Deposit amount.
      */
     public $amount;
 
     /**
-     * @var integer
+     * @var integer Country ID.
      */
     public $countryId;
 
     /**
-     * @var string
+     * @var string Amount currency.
      */
     public $currency;
 
     /**
-     * @var array
+     * @var array|CoinsbankFileModel File data of the person document (front side) for WRT/SEP required if isn't set in verification.
+     * @see CoinsbankFile::uploadFile
      */
     public $documentPersonFront;
 
     /**
-     * @var array
+     * @var array|CoinsbankFileModel File data of the person document (back side) for WRT/SEP available for saving if isn't set in verification.
+     * @see CoinsbankFile::uploadFile
      */
     public $documentPersonBack;
 
     /**
-     * @var string
+     * @var string First Name, required for FSC, for WRT/SEP required if isn't set in verification.
      */
     public $firstName;
 
     /**
-     * @var string
+     * @var string Last Name, required for FSC, for WRT/SEP required if isn't set in verification.
      */
     public $lastName;
 
     /**
-     * @var string
+     * @var string Payer account number, required for WRT/SEP if verification level less than 3.
      */
     public $payerAccount;
 
     /**
-     * @var string
+     * @var string The list of available payment systems's returned by method:
+     * @see CoinsbankDeposit::getAvailable
      */
     public $paymentSystem;
 }

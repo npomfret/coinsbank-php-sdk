@@ -3,6 +3,7 @@
 namespace Coinsbank\Api;
 
 use Coinsbank\CoinsbankApi;
+use Coinsbank\Transport\CoinsbankResponse;
 
 /**
  * Class CoinsbankBitcoinchart
@@ -11,14 +12,15 @@ use Coinsbank\CoinsbankApi;
  */
 class CoinsbankBitcoinchart extends CoinsbankApi
 {
-    const URL_TRADES = '/bitcoincharts/trades';
-    const URL_ORDERBOOK = '/bitcoincharts/orderbook';
+    const URL = '/bitcoincharts';
+    const URL_TRADES = self::URL . '/trades';
+    const URL_ORDERBOOK = self::URL . '/orderbook';
 
     /**
      * Gets trade history.
      *
      * @param string $currencyPair
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function getTrades($currencyPair)
     {
@@ -29,7 +31,7 @@ class CoinsbankBitcoinchart extends CoinsbankApi
      * Gets orderbook.
      *
      * @param string $currencyPair
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function getOrderBook($currencyPair)
     {
