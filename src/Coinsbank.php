@@ -31,11 +31,11 @@ abstract class Coinsbank
      * Sends a DELETE request to REST-API and returns the result.
      *
      * @param string $uri
-     * @param array $data
+     * @param array|object $data
      * @param array $headers
      * @return CoinsbankResponse
      */
-    public function delete($uri, array $data = array(), $headers = array())
+    public function delete($uri, $data = array(), $headers = array())
     {
         return $this->sendRequest(
             CoinsbankRest::DELETE,
@@ -49,11 +49,11 @@ abstract class Coinsbank
      * Sends a GET request to REST-API and returns the result.
      *
      * @param string $uri
-     * @param array $data
+     * @param array|object $data
      * @param array $headers
      * @return CoinsbankResponse
      */
-    public function get($uri, array $data = array(), $headers = array())
+    public function get($uri, $data = array(), $headers = array())
     {
         return $this->sendRequest(
             CoinsbankRest::GET,
@@ -67,12 +67,12 @@ abstract class Coinsbank
      * Sends a POST request to REST-API and returns the result.
      *
      * @param string $uri
-     * @param array $data
+     * @param array|object $data
      * @param array $headers
      * @param bool $isMultipart
      * @return CoinsbankResponse
      */
-    public function post($uri, array $data = array(), $headers = array(), $isMultipart = false)
+    public function post($uri, $data = array(), $headers = array(), $isMultipart = false)
     {
         return $this->sendRequest(
             CoinsbankRest::POST,
@@ -86,11 +86,11 @@ abstract class Coinsbank
      * Sends a DELETE request to REST-API and returns the result.
      *
      * @param string $uri
-     * @param array $data
+     * @param array|object $data
      * @param array $headers
      * @return CoinsbankResponse
      */
-    public function put($uri, array $data = array(), $headers = array())
+    public function put($uri, $data = array(), $headers = array())
     {
         return $this->sendRequest(
             CoinsbankRest::PUT,
@@ -105,14 +105,14 @@ abstract class Coinsbank
      *
      * @param string $method
      * @param string $path
-     * @param array $data
+     * @param array|object $data
      * @param array $headers
      * @return CoinsbankResponse
      */
     public function sendRequest(
         $method,
         $path,
-        array $data = array(),
+        $data = array(),
         array $headers = array()
     ) {
         $data['headers'] = array_replace(array('Content-Type' => 'application/json'), $headers);
