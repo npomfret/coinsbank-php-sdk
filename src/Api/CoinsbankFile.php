@@ -46,7 +46,7 @@ class CoinsbankFile extends CoinsbankSapi
      */
     public function uploadFile($fileName, $fileContent)
     {
-        return $this->post(self::URL, array(array('name' => 'FileModel[picture]', 'filename' => $fileName, 'contents' => $fileContent)), array('Content-Type' => 'application/octet-stream'), true);
+        return $this->post(self::URL, array(array('name' => 'FileModel[picture]', 'filename' => $fileName, 'contents' => $fileContent)), array(), true);
     }
 
 }

@@ -115,7 +115,7 @@ abstract class Coinsbank
         $data = array(),
         array $headers = array()
     ) {
-        $data['headers'] = array_replace(array('Content-Type' => 'application/json'), $headers);
+        $data['headers'] = array_replace(!isset($data['multipart']) ? array('Content-Type' => 'application/json') : array(), $headers);
 
         return $this->context->getClient()->send($method, $this->getApiUri() . $path, $data);
     }
