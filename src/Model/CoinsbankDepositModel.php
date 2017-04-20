@@ -44,7 +44,7 @@ class CoinsbankDepositModel extends CoinsbankModel
     public $countryId;
 
     /**
-     * @var string Amount currency.
+     * @var string Currency.
      */
     public $currency;
 
@@ -76,8 +76,8 @@ class CoinsbankDepositModel extends CoinsbankModel
     public $payerAccount;
 
     /**
-     * @var string The list of available payment systems's returned by method:
-     * @see CoinsbankDeposit::getAvailable
+     * @var string Payment system.
+     * @see CoinsbankDeposit::getAvailable The list of available payment systems.
      */
     public $paymentSystem;
 }
