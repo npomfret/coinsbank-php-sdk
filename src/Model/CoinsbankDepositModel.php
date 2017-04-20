@@ -39,12 +39,12 @@ class CoinsbankDepositModel extends CoinsbankModel
     public $amount;
 
     /**
-     * @var integer Country ID.
+     * @var integer Country ID. //todo: where is list of countries?
      */
     public $countryId;
 
     /**
-     * @var string Currency.
+     * @var string Destination currency.
      */
     public $currency;
 

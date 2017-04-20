@@ -15,7 +15,7 @@ use Coinsbank\Api\CoinsbankWithdrawal;
  * @method CoinsbankWithdrawalModel setBankAddress($value)
  * @method CoinsbankWithdrawalModel setBankName($value)
  * @method CoinsbankWithdrawalModel setBeneficiaryAddress($value)
- * @method CoinsbankWithdrawalModel setBeneficiaryNames($value)
+ * @method CoinsbankWithdrawalModel setBeneficiaryName($value)
  * @method CoinsbankWithdrawalModel setComment($value)
  * @method CoinsbankWithdrawalModel setCurrency($value)
  * @method CoinsbankWithdrawalModel setIban($value)
@@ -40,7 +40,7 @@ class CoinsbankWithdrawalModel extends CoinsbankTokenModel
     public $amount;
 
     /**
-     * @var string Bank details
+     * @var string Bank details (required for WRT + RUB)
      */
     public $bankAddress;
 
@@ -50,7 +50,7 @@ class CoinsbankWithdrawalModel extends CoinsbankTokenModel
     public $bankName;
 
     /**
-     * @var string Bank details
+     * @var string Bank details (required for WRT + RUB)
      */
     public $beneficiaryAddress;
 

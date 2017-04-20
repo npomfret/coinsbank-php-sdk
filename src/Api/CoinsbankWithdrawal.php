@@ -42,7 +42,7 @@ class CoinsbankWithdrawal extends CoinsbankSapi
     }
 
     /**
-     * Cancels withdrawal.
+     * Cancels withdrawal (not CBE, CBI).
      *
      * @param string $id Withdrawal ID
      * @return CoinsbankResponse
