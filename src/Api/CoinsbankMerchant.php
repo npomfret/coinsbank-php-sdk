@@ -2,14 +2,14 @@
 
 namespace Coinsbank\Api;
 
-use Coinsbank\Coinsbank;
+use Coinsbank\CoinsbankSapi;
 
 /**
  * Class Merchant
  *
  * @package Coinsbank\Api
  */
-class CoinsbankMerchant extends Coinsbank
+class CoinsbankMerchant extends CoinsbankSapi
 {
 
 }

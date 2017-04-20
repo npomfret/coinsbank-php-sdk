@@ -2,7 +2,9 @@
 
 namespace Coinsbank\Api;
 
-use Coinsbank\Coinsbank;
+use Coinsbank\CoinsbankSapi;
+use Coinsbank\Constant\CoinsbankRest;
+use Coinsbank\Filter\CoinsbankTradeFilter;
 use Coinsbank\Transport\CoinsbankResponse;
 
 /**
@@ -10,17 +12,20 @@ use Coinsbank\Transport\CoinsbankResponse;
  *
  * @package Coinsbank\Api
  */
-class CoinsbankTrade extends Coinsbank
+class CoinsbankTrade extends CoinsbankSapi
 {
     const URL = '/trade';
-    const URL_HISTORY = '/trade/closing';
-    const URL_FEE = '/trade/fee';
+    const URL_HISTORY = self::URL . '/closing';
+    const URL_FEE = self::URL . '/fee';
 
     const DIRECTION_BUY = 'buy';
     const DIRECTION_SELL = 'sell';
 
     const COMMISSION_TYPE_FROM = 0;
     const COMMISSION_TYPE_TO = 1;
+
+    const QUOTE_FROM = 0;
+    const QUOTE_TO = 1;
 
     const ACTION_RESET_TP = 'resettp';
     const ACTION_RESET_SL = 'resetsl';
@@ -29,7 +34,7 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Cancels trade order.
      *
-     * @param $id
+     * @param string $id
      * @return CoinsbankResponse
      */
     public function cancelOrder($id)
@@ -40,59 +45,59 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Creates new trade order.
      *
-     * @param $fromUserAccount
-     * @param $toUserAccount
-     * @param $amount
-     * @param $commissionType - Where is commission get from (source or dest account)
-     * @param $direction - What's amount relative to (sell - fromUserAccount, buy - toUserAccount
-     * @param null $exchangeRate
-     * @param null $stopLoss
-     * @param null $takeProfit
+     * @param string $fromUserAccount example: buy BTCUSD: from=USD account; sell BTCUSD: from=BTC account
+     * @param string $toUserAccount example: buy BTCUSD: to=BTC account; sell BTCUSD: to=USD account
+     * @param double $amount
+     * @param integer $commissionType - Where is commission get from ($fromUserAccount - 0 or $toUserAccount - 1)
+     * @param double|null $exchangeRate
+     * @param double|null $stopLoss
+     * @param double|null $takeProfit
      * @return CoinsbankResponse
      */
     public function createNewOrder(
         $fromUserAccount,
         $toUserAccount,
         $amount,
-        $commissionType,
-        $direction,
+        $commissionType = CoinsbankTrade::COMMISSION_TYPE_FROM,
         $exchangeRate = null,
         $stopLoss = null,
         $takeProfit = null
     ) {
-        return $this->post(self::URL, compact('fromUserAccount', 'toUserAccount', 'amount', 'commissionType', 'direction', 'exchangeRate', 'stopLoss', 'takeProfit'));
+        return $this->post(self::URL, compact('fromUserAccount', 'toUserAccount', 'amount', 'commissionType', 'exchangeRate', 'stopLoss', 'takeProfit'));
     }
 
     /**
      * Gets fee data.
      *
-     * @param $fromUserAccount
-     * @param $toUserAccount
-     * @param $amount
-     * @param $commissionType
-     * @param $direction
-     * @param null $exchangeRate
-     * @param null $stopLoss
-     * @param null $takeProfit
+     * @param string $fromUserAccount example: buy BTCUSD: from=USD account; sell BTCUSD: from=BTC account
+     * @param string $toUserAccount example: buy BTCUSD: to=BTC account; sell BTCUSD: to=USD account
+     * @param double $amount
+     * @param string $direction Sell or Buy
+     * @param integer $commissionType Where is commission get from (fromUserAccount or toUserAccount account)
+     * @param integer $quote What's amount relative to (sell + 0 or buy + 1 - fromUserAccount, sell + 1 or buy + 0 - toUserAccount)
+     * @param double|null $exchangeRate
+     * @param double|null $stopLoss
+     * @param double|null $takeProfit
      * @return CoinsbankResponse
      */
     public function getFeeData(
         $fromUserAccount,
         $toUserAccount,
         $amount,
-        $commissionType,
         $direction,
+        $commissionType = CoinsbankTrade::COMMISSION_TYPE_FROM,
+        $quote = self::QUOTE_FROM,
         $exchangeRate = null,
         $stopLoss = null,
         $takeProfit = null
     ) {
-        return $this->get(self::URL_FEE, compact('fromUserAccount', 'toUserAccount', 'amount', 'commissionType', 'direction', 'exchangeRate', 'stopLoss', 'takeProfit'));
+        return $this->get(self::URL_FEE, compact('fromUserAccount', 'toUserAccount', 'amount', 'commissionType', 'direction', 'quote', 'exchangeRate', 'stopLoss', 'takeProfit'));
     }
 
     /**
      * Return trade order info.
      *
-     * @param $id
+     * @param string $id Trade order ID
      * @return CoinsbankResponse
      */
     public function getOrder($id)
@@ -103,30 +108,25 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Returns trade orders list.
      *
-     * @param int $page
-     * @param int $pageSize
-     * @param array $distinct
-     * @param array $sort
+     * @param integer $page
+     * @param integer $pageSize
+     * @param array|CoinsbankTradeFilter $filter
      * @param bool $exportPDF
-     * @param array $filter
      * @return CoinsbankResponse
      */
     public function getOrders(
         $page = 0,
-        $pageSize = self::DEFAULT_PAGE_SIZE,
-        $distinct = [],
-        $sort = [],
-        $exportPDF = false,
-        $filter = []//todo: сделать объектом
-    )
-    {
-        return $this->get(self::URL, compact('page', 'pageSize', 'distinct', 'sort', 'exportPDF', 'stopLoss', 'filter'));
+        $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE,
+        $filter = array(),
+        $exportPDF = false
+    ) {
+        return $this->get(self::URL, compact('page', 'pageSize', 'filter', 'exportPDF'));
     }
 
     /**
      * Returns order closing history.
      *
-     * @param $id
+     * @param string $id
      * @return CoinsbankResponse
      */
     public function orderHistory($id)
@@ -137,8 +137,8 @@ class CoinsbankTrade extends Coinsbank
     /**
      * Updates trade order (resets tp, sl, sltp).
      *
-     * @param $id
-     * @param $action
+     * @param string $id
+     * @param string $action
      * @return CoinsbankResponse
      */
     public function updateOrder($id, $action)

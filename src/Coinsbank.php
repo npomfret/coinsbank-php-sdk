@@ -3,6 +3,7 @@
 namespace Coinsbank;
 
 use Coinsbank\Constant\CoinsbankRest;
+use Coinsbank\Transport\CoinsbankResponse;
 
 /**
  * Class Coinsbank
@@ -10,11 +11,11 @@ use Coinsbank\Constant\CoinsbankRest;
  * @package Coinsbank
  *
  */
-class Coinsbank
+abstract class Coinsbank
 {
-    const DEFAULT_PAGE_SIZE = 50;
-
     protected $context;
+
+    abstract protected function getApiUri();
 
     /**
      * Coinsbank constructor.
@@ -24,102 +25,98 @@ class Coinsbank
     public function __construct(CoinsbankApiContext $context)
     {
         $this->context = $context;
-
     }
 
     /**
      * Sends a DELETE request to REST-API and returns the result.
      *
-     * @param $uri
-     * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @param string $uri
+     * @param array|object $data
+     * @param array $headers
+     * @return CoinsbankResponse
      */
-    public function delete($uri, array $data = [])
+    public function delete($uri, $data = array(), $headers = array())
     {
         return $this->sendRequest(
             CoinsbankRest::DELETE,
             $uri,
-            array('form_params' => $data)
+            array('json' => $data),
+            $headers
         );
     }
 
     /**
      * Sends a GET request to REST-API and returns the result.
      *
-     * @param $uri
-     * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @param string $uri
+     * @param array|object $data
+     * @param array $headers
+     * @return CoinsbankResponse
      */
-    public function get($uri, array $data = [])
+    public function get($uri, $data = array(), $headers = array())
     {
         return $this->sendRequest(
             CoinsbankRest::GET,
             $uri,
-            array('query' => $data)
+            array('query' => $data),
+            $headers
         );
-    }
-
-    /**
-     * Returns prepared path with ID.
-     *
-     * @param $path
-     * @param $id
-     * @return string
-     */
-    public function getPathWithId($path, $id)
-    {
-        return sprintf('%s/_$s', $path, $id);
     }
 
     /**
      * Sends a POST request to REST-API and returns the result.
      *
-     * @param $uri
-     * @param array $data
+     * @param string $uri
+     * @param array|object $data
+     * @param array $headers
      * @param bool $isMultipart
-     * @return Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
-    public function post($uri, array $data = [], $isMultipart = false)
+    public function post($uri, $data = array(), $headers = array(), $isMultipart = false)
     {
         return $this->sendRequest(
             CoinsbankRest::POST,
             $uri,
-            $isMultipart ? array('multipart' => $data) : array('form_params' => $data)
+            $isMultipart ? array('multipart' => $data) : array('json' => $data),
+            $headers
         );
     }
 
     /**
      * Sends a DELETE request to REST-API and returns the result.
      *
-     * @param $uri
-     * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @param string $uri
+     * @param array|object $data
+     * @param array $headers
+     * @return CoinsbankResponse
      */
-    public function put($uri, array $data = [])
+    public function put($uri, $data = array(), $headers = array())
     {
         return $this->sendRequest(
             CoinsbankRest::PUT,
             $uri,
-            array('form_params' => $data)
+            array('json' => $data),
+            $headers
         );
     }
-
 
     /**
      * Sends a request to REST-API and returns the result.
      *
-     * @param $method
-     * @param $uri
-     * @param array $data
-     * @return Transport\CoinsbankResponse
+     * @param string $method
+     * @param string $path
+     * @param array|object $data
+     * @param array $headers
+     * @return CoinsbankResponse
      */
     public function sendRequest(
         $method,
-        $uri,
-        array $data = array()
+        $path,
+        $data = array(),
+        array $headers = array()
     ) {
-        $data['headers'] = array('Content-Type' => 'application/json', 'Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $uri, $method));
+        $data['headers'] = array_replace(!isset($data['multipart']) ? array('Content-Type' => 'application/json') : array(), $headers);
 
-        return $this->context->getClient()->send($method, CoinsbankRest::REST_API_URI . $uri, $data);
+        return $this->context->getClient()->send($method, $this->getApiUri() . $path, $data);
     }
 }
