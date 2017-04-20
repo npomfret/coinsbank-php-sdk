@@ -28,21 +28,21 @@ class CoinsbankApiContext
 
     protected $signature;
 
-    public function __construct($key, $secret, $httpSettings = array(), $mode = self::MODE_PRODUCTION)
+    public function __construct($key, $secret, $httpSettings = [], $mode = self::MODE_PRODUCTION)
     {
         $this->key = $key;
         $this->mode = $mode;
         $this->secret = $secret;
         $this->signature = new CoinsbankSignature($key, $secret);
-        $httpSettings = array(
-            'curl' => $httpSettings + array(
+        $httpSettings = [
+            'curl' => $httpSettings + [
                     CURLOPT_CONNECTTIMEOUT => self::DEFAULT_CONNECTION_TIMEOUT,
                     CURLOPT_TIMEOUT        => self::DEFAULT_CURL_TIMEOUT,
                     CURLOPT_USERAGENT      => 'Coinsbank-PHP-SDK',
                     CURLOPT_RETURNTRANSFER => true,
 
-                )
-        );
+                ]
+        ];
         $this->client = new CoinsbankHttpClient($httpSettings);
     }
 

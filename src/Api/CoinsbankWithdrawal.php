@@ -87,6 +87,6 @@ class CoinsbankWithdrawal extends CoinsbankSapi
      */
     public function getFee($amount, $currency, $paymentSystem, $accountId, $urgent = 0, $address = null)
     {
-        return $this->get(self::URL_FEE, array('amount' => $amount, 'currency' => $currency, 'paymentSystem' => $paymentSystem, 'accountId' => $accountId, 'urgent' => $urgent, 'address' => $address));
+        return $this->get(self::URL_FEE, ['amount' => $amount, 'currency' => $currency, 'paymentSystem' => $paymentSystem, 'accountId' => $accountId, 'urgent' => $urgent, 'address' => $address]);
     }
 }

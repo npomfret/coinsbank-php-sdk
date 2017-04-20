@@ -39,7 +39,7 @@ class CoinsbankDepositModel extends CoinsbankModel
     public $amount;
 
     /**
-     * @var integer Country ID. //todo: where is list of countries?
+     * @var integer Country ID from __DIR__.'/../Data/countries.php'
      */
     public $countryId;
 

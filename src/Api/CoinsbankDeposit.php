@@ -56,7 +56,7 @@ class CoinsbankDeposit extends CoinsbankSapi
      */
     public function fscVerification($id, $code)
     {
-        return $this->put($this->getPathWithId(self::URL_FSC_VERIFICATION, $id), array('code' => $code));
+        return $this->put($this->getPathWithId(self::URL_FSC_VERIFICATION, $id), ['code' => $code]);
     }
 
     /**
@@ -101,7 +101,7 @@ class CoinsbankDeposit extends CoinsbankSapi
      */
     public function getFSCDocument($id, $type)
     {
-        return $this->get($this->getPathWithId(self::URL_DOCUMENT, $id), array('type' => $type));
+        return $this->get($this->getPathWithId(self::URL_DOCUMENT, $id), ['type' => $type]);
     }
 
     /**
@@ -114,7 +114,7 @@ class CoinsbankDeposit extends CoinsbankSapi
      */
     public function getFee($amount, $currency, $paymentSystem)
     {
-        return $this->get(self::URL_FEE, array('amount' => $amount, 'currency' => $currency, 'ps_code' => $paymentSystem));
+        return $this->get(self::URL_FEE, ['amount' => $amount, 'currency' => $currency, 'ps_code' => $paymentSystem]);
     }
 
     /**
@@ -140,6 +140,6 @@ class CoinsbankDeposit extends CoinsbankSapi
      */
     public function uploadFSCDocuments($id, $cardSelfieFileData, $cardFrontFileData, $cardBackFileData)
     {
-        return $this->put($this->getPathWithId(self::URL_DOCUMENT, $id), array('card_selfie' => $cardSelfieFileData, 'card_front' => $cardFrontFileData, 'card_back' => $cardBackFileData));
+        return $this->put($this->getPathWithId(self::URL_DOCUMENT, $id), ['card_selfie' => $cardSelfieFileData, 'card_front' => $cardFrontFileData, 'card_back' => $cardBackFileData]);
     }
 }

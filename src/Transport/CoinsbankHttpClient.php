@@ -21,7 +21,7 @@ class CoinsbankHttpClient
      *
      * @param array $options Curl options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->guzzleClient = new Client($options);
     }
@@ -35,7 +35,7 @@ class CoinsbankHttpClient
      * @return CoinsbankResponse
      * @throws CoinsbankRequestException
      */
-    public function send($method, $uri, $options = array())
+    public function send($method, $uri, $options = [])
     {
         try {
             $response = $this->guzzleClient->request($method, $uri, $options);

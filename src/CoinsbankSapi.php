@@ -56,10 +56,10 @@ class CoinsbankSapi extends Coinsbank
     public function sendRequest(
         $method,
         $path,
-        $data = array(),
-        array $headers = array()
+        $data = [],
+        array $headers = []
     ) {
-        $headers = array_replace(array('Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $path, $method)), $headers);
+        $headers = array_replace(['Key' => $this->context->getKey(), 'Signature' => $this->context->getSignature()->generate($data, $path, $method)], $headers);
 
         return parent::sendRequest($method, $path, $data, $headers);
     }

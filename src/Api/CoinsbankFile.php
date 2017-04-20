@@ -22,7 +22,7 @@ class CoinsbankFile extends CoinsbankSapi
      */
     public function deleteFile($fileKey, $fileName)
     {
-        return $this->delete(self::URL, array('key' => $fileKey, 'filename' => $fileName));
+        return $this->delete(self::URL, ['key' => $fileKey, 'filename' => $fileName]);
     }
 
     /**
@@ -34,7 +34,7 @@ class CoinsbankFile extends CoinsbankSapi
      */
     public function getFile($fileKey, $fileName)
     {
-        return $this->get(self::URL, array('key' => $fileKey, 'filename' => $fileName));
+        return $this->get(self::URL, ['key' => $fileKey, 'filename' => $fileName]);
     }
 
     /**
@@ -46,7 +46,7 @@ class CoinsbankFile extends CoinsbankSapi
      */
     public function uploadFile($fileName, $fileContent)
     {
-        return $this->post(self::URL, array(array('name' => 'FileModel[picture]', 'filename' => $fileName, 'contents' => $fileContent)), array(), true);
+        return $this->post(self::URL, [['name' => 'FileModel[picture]', 'filename' => $fileName, 'contents' => $fileContent]], [], true);
     }
 
 }

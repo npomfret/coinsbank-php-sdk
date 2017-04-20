@@ -117,7 +117,7 @@ class CoinsbankTrade extends CoinsbankSapi
     public function getOrders(
         $page = 0,
         $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE,
-        $filter = array(),
+        $filter = [],
         $exportPDF = false
     ) {
         return $this->get(self::URL, compact('page', 'pageSize', 'filter', 'exportPDF'));

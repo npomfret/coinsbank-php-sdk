@@ -35,12 +35,12 @@ abstract class Coinsbank
      * @param array $headers
      * @return CoinsbankResponse
      */
-    public function delete($uri, $data = array(), $headers = array())
+    public function delete($uri, $data = [], $headers = [])
     {
         return $this->sendRequest(
             CoinsbankRest::DELETE,
             $uri,
-            array('json' => $data),
+            ['json' => $data],
             $headers
         );
     }
@@ -53,12 +53,12 @@ abstract class Coinsbank
      * @param array $headers
      * @return CoinsbankResponse
      */
-    public function get($uri, $data = array(), $headers = array())
+    public function get($uri, $data = [], $headers = [])
     {
         return $this->sendRequest(
             CoinsbankRest::GET,
             $uri,
-            array('query' => $data),
+            ['query' => $data],
             $headers
         );
     }
@@ -72,12 +72,12 @@ abstract class Coinsbank
      * @param bool $isMultipart
      * @return CoinsbankResponse
      */
-    public function post($uri, $data = array(), $headers = array(), $isMultipart = false)
+    public function post($uri, $data = [], $headers = [], $isMultipart = false)
     {
         return $this->sendRequest(
             CoinsbankRest::POST,
             $uri,
-            $isMultipart ? array('multipart' => $data) : array('json' => $data),
+            $isMultipart ? ['multipart' => $data] : ['json' => $data],
             $headers
         );
     }
@@ -90,12 +90,12 @@ abstract class Coinsbank
      * @param array $headers
      * @return CoinsbankResponse
      */
-    public function put($uri, $data = array(), $headers = array())
+    public function put($uri, $data = [], $headers = [])
     {
         return $this->sendRequest(
             CoinsbankRest::PUT,
             $uri,
-            array('json' => $data),
+            ['json' => $data],
             $headers
         );
     }
@@ -112,10 +112,10 @@ abstract class Coinsbank
     public function sendRequest(
         $method,
         $path,
-        $data = array(),
-        array $headers = array()
+        $data = [],
+        array $headers = []
     ) {
-        $data['headers'] = array_replace(!isset($data['multipart']) ? array('Content-Type' => 'application/json') : array(), $headers);
+        $data['headers'] = array_replace(!isset($data['multipart']) ? ['Content-Type' => 'application/json'] : [], $headers);
 
         return $this->context->getClient()->send($method, $this->getApiUri() . $path, $data);
     }

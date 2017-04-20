@@ -40,7 +40,7 @@ class CoinsbankSignature
     protected function getBody($data)
     {
         //multipart data isn't used in signature
-        return !is_array($data) ? array() : (isset($data['json']) ? $data['json'] : (isset($data['multipart']) ? array() : (isset($data['query']) ? $data['query'] : $data)));
+        return !is_array($data) ? [] : (isset($data['json']) ? $data['json'] : (isset($data['multipart']) ? [] : (isset($data['query']) ? $data['query'] : $data)));
     }
 
     /**
@@ -64,7 +64,7 @@ class CoinsbankSignature
      */
     public function generate($data, $uri, $requestType)
     {
-        $signatureData = http_build_query(array('_key' => $this->key, '_method' => $this->getPath($uri), '_type' => strtoupper($requestType)) + (array)$this->getBody($data));
+        $signatureData = http_build_query(['_key' => $this->key, '_method' => $this->getPath($uri), '_type' => strtoupper($requestType)] + (array)$this->getBody($data));
 
         return hash_hmac('sha512', $signatureData, $this->secret);
     }
