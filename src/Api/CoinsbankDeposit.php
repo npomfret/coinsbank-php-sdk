@@ -18,8 +18,12 @@ class CoinsbankDeposit extends CoinsbankSapi
     const URL = '/wallet/deposit';
     const URL_AVAILABLE = self::URL . '/available';
     const URL_FEE = self::URL . '/fee';
-    const URL_FSC_VERIFICATION = self::URL . '/fscVerification/';
+    const URL_FSC_VERIFICATION = self::URL . '/fscVerification';
     const URL_DOCUMENT = self::URL . '/doc';
+
+    const FSC_DOC_TYPE_SELFIE = 'card_selfie';
+    const FSC_DOC_TYPE_FRONT = 'card_front';
+    const FSC_DOC_TYPE_BACK = 'card_back';
 
     /**
      * Cancels deposit.
@@ -89,6 +93,18 @@ class CoinsbankDeposit extends CoinsbankSapi
     }
 
     /**
+     * Returns FSC deposit document data.
+     *
+     * @param string $id
+     * @param string $type card_selfie|card_front|card_back
+     * @return CoinsbankResponse
+     */
+    public function getFSCDocument($id, $type)
+    {
+        return $this->get($this->getPathWithId(self::URL_DOCUMENT, $id), array('type' => $type));
+    }
+
+    /**
      * Returns deposit fee.
      *
      * @param double $amount
@@ -102,14 +118,28 @@ class CoinsbankDeposit extends CoinsbankSapi
     }
 
     /**
-     * Upload document for Deposit.
+     * Upload document for Deposit (not-FSC).
      *
-     * @param $id
+     * @param string $id
      * @param array|CoinsbankFileModel $fileData
      * @return CoinsbankResponse
      */
     public function uploadDocument($id, $fileData)
     {
-        return $this->put($this->getPathWithId(self::URL_DOCUMENT, $id), array('FileData' => $fileData));
+        return $this->put($this->getPathWithId(self::URL_DOCUMENT, $id), $fileData);
+    }
+
+    /**
+     * Upload documents for FSC Deposit.
+     *
+     * @param string $id
+     * @param array|CoinsbankFileModel $cardSelfieFileData
+     * @param array|CoinsbankFileModel $cardFrontFileData
+     * @param array|CoinsbankFileModel $cardBackFileData
+     * @return CoinsbankResponse
+     */
+    public function uploadFSCDocuments($id, $cardSelfieFileData, $cardFrontFileData, $cardBackFileData)
+    {
+        return $this->put($this->getPathWithId(self::URL_DOCUMENT, $id), array('card_selfie' => $cardSelfieFileData, 'card_front' => $cardFrontFileData, 'card_back' => $cardBackFileData));
     }
 }
