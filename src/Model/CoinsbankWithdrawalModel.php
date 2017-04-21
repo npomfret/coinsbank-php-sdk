@@ -23,7 +23,7 @@ use Coinsbank\Api\CoinsbankWithdrawal;
  * @method CoinsbankWithdrawalModel setSwift($value)
  * @method CoinsbankWithdrawalModel setUrgent($value)
  */
-class CoinsbankWithdrawalModel extends CoinsbankTokenModel
+class CoinsbankWithdrawalModel extends CoinsbankModel
 {
     /**
      * @var string Wallet for withdrawal from.

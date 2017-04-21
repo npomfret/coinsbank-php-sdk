@@ -4,6 +4,7 @@ namespace Coinsbank\Api;
 
 use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
+use Coinsbank\Filter\CoinsbankCardOperationFilter;
 use Coinsbank\Filter\CoinsbankOperationFilter;
 use Coinsbank\Transport\CoinsbankResponse;
 
@@ -36,7 +37,7 @@ class CoinsbankOperation extends CoinsbankSapi
      * @param string $cardId
      * @param int $page
      * @param int $pageSize
-     * @param array $filter
+     * @param array|CoinsbankCardOperationFilter $filter
      * @param bool $exportPDF
      * @return CoinsbankResponse
      */
