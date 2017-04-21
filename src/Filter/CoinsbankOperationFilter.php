@@ -2,8 +2,8 @@
 
 namespace Coinsbank\Filter;
 
-use Coinsbank\Constant\PaymentStatus;
-use Coinsbank\Constant\TradeStatus;
+use Coinsbank\Constant\CoinsbankPaymentStatus;
+use Coinsbank\Constant\CoinsbankTradeStatus;
 use Coinsbank\Model\CoinsbankModel;
 
 /**
@@ -91,8 +91,8 @@ class CoinsbankOperationFilter extends CoinsbankModel
 
     /**
      * @var integer|integer[]
-     * @see TradeStatus
-     * @see PaymentStatus
+     * @see CoinsbankTradeStatus
+     * @see CoinsbankPaymentStatus
      */
     public $status;
 

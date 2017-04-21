@@ -8,6 +8,11 @@ use Coinsbank\Filter\CoinsbankCardOperationFilter;
 use Coinsbank\Filter\CoinsbankOperationFilter;
 use Coinsbank\Transport\CoinsbankResponse;
 
+/**
+ * Class CoinsbankOperation
+ *
+ * @package Coinsbank\Api
+ */
 class CoinsbankOperation extends CoinsbankSapi
 {
     const URL = '/operation';

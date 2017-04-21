@@ -4,7 +4,13 @@ namespace Coinsbank\Api;
 
 use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
+use Coinsbank\Transport\CoinsbankResponse;
 
+/**
+ * Class CoinsbankFreeze
+ *
+ * @package Coinsbank\Api
+ */
 class CoinsbankFreeze extends CoinsbankSapi
 {
     const URL = '/freeze';
@@ -14,7 +20,7 @@ class CoinsbankFreeze extends CoinsbankSapi
      *
      * @param int $page
      * @param int $pageSize
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function getData($page = 0, $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE)
     {

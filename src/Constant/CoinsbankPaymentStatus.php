@@ -3,12 +3,12 @@
 namespace Coinsbank\Constant;
 
 /**
- * Class PaymentStatus
+ * Class CoinsbankPaymentStatus
  * Payments statuses list.
  *
  * @package Coinsbank\Constant
  */
-class PaymentStatus
+class CoinsbankPaymentStatus
 {
     const STATUS_PENDING = 0;
     const STATUS_REJECTED = 1;

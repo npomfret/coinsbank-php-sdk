@@ -3,12 +3,12 @@
 namespace Coinsbank\Constant;
 
 /**
- * Class TradeStatus
+ * Class CoinsbankTradeStatus
  * Trade statuses list.
  *
  * @package Coinsbank\Constant
  */
-class TradeStatus
+class CoinsbankTradeStatus
 {
     const TRADE_STATUS_INIT = 0;
     const TRADE_STATUS_OPEN = 1;

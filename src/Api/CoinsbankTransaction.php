@@ -4,7 +4,14 @@ namespace Coinsbank\Api;
 
 use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
+use Coinsbank\Filter\CoinsbankTransactionFilter;
+use Coinsbank\Transport\CoinsbankResponse;
 
+/**
+ * Class CoinsbankTransaction
+ *
+ * @package Coinsbank\Api
+ */
 class CoinsbankTransaction extends CoinsbankSapi
 {
     const URL = '/transaction';
@@ -14,10 +21,16 @@ class CoinsbankTransaction extends CoinsbankSapi
      *
      * @param int $page
      * @param int $pageSize
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @param array|CoinsbankTransactionFilter $filter
+     * @param bool $exportPDF
+     * @return CoinsbankResponse
      */
-    public function getData($page = 0, $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE)
-    {
-        return $this->get(self::URL, compact('page', 'pageSize'));
+    public function getData(
+        $page = 0,
+        $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE,
+        $filter = [],
+        $exportPDF = false
+    ) {
+        return $this->get(self::URL, compact('page', 'pageSize', 'filter', 'exportPDF'));
     }
 }

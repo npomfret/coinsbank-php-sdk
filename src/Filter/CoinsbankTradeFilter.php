@@ -2,7 +2,7 @@
 
 namespace Coinsbank\Filter;
 
-use Coinsbank\Constant\TradeStatus;
+use Coinsbank\Constant\CoinsbankTradeStatus;
 use Coinsbank\Model\CoinsbankModel;
 
 /**
@@ -121,7 +121,7 @@ class CoinsbankTradeFilter extends CoinsbankModel
 
     /**
      * @var integer|integer[]
-     * @see TradeStatus
+     * @see CoinsbankTradeStatus
      */
     public $status;
 
