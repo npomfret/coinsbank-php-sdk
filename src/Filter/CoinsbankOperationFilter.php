@@ -26,12 +26,25 @@ use Coinsbank\Model\CoinsbankModel;
 class CoinsbankOperationFilter extends CoinsbankModel
 {
     /**
-     * @var string|string[]
+     * Operations types list.
+     */
+    const TYPE_DEPOSIT = 1;
+    const TYPE_WITHDRAWAL = 2;
+    const TYPE_SEND_TO_OWNS = 3;
+    const TYPE_GET_FROM_OWNS = 4;
+    const TYPE_SEND_TO_OTHERS = 5;
+    const TYPE_GET_FROM_OTHERS = 6;
+    const TYPE_EXCHANGE = 7;
+    const TYPE_MERCHANT_TRANSFER = 8;
+    const TYPE_TRADE_ORDER = 9;
+
+    /**
+     * @var string|string[] Wallet ID.
      */
     public $accountId;
 
     /**
-     * @var string|string[]
+     * @var string|string[] Wallet name.
      */
     public $accountName;
 
