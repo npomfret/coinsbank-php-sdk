@@ -56,7 +56,7 @@ class CoinsbankMerchant extends CoinsbankSapi
      * Force invoice close.
      *
      * @param string $id Invoice ID.
-     * @param string $currencyAccept Accepted customer's currency
+     * @param string $currencyAccept Accepted customer's currency (available in statuses: MerchantOrderModel::STATUS_VIEWED, MerchantOrderModel::STATUS_STARTED, MerchantOrderModel::STATUS_PARTIAL_PAID)
      * @return CoinsbankResponse
      */
     public function forceInvoiceClose($id, $currencyAccept)
