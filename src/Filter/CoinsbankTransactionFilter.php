@@ -18,8 +18,6 @@ use Coinsbank\Model\CoinsbankModel;
  * @method CoinsbankTransactionFilter setCurrency($value)
  * @method CoinsbankTransactionFilter setDateCreateFrom($value)
  * @method CoinsbankTransactionFilter setDateCreateTo($value)
- * @method CoinsbankTransactionFilter setDirection($value)
- * @method CoinsbankTransactionFilter setStatus($value)
  * @method CoinsbankTransactionFilter setTransactionType($value)
  * @method CoinsbankTransactionFilter setTransactionTypeGroup($value)
  */
@@ -66,17 +64,7 @@ class CoinsbankTransactionFilter extends CoinsbankModel
     public $dateCreateTo;
 
     /**
-     * @var boolean
-     */
-    public $direction;
-
-    /**
-     * @var integer|integer[]
-     */
-    public $status;
-
-    /**
-     * @var string|string[]
+     * @var string|string[] Not work togheter with filter transactionTypeGroup, only separately
      * @see CoinsbankTransactionType
      */
     public $transactionType;
