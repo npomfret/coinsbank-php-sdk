@@ -18,7 +18,6 @@ class CoinsbankOperation extends CoinsbankSapi
      * @param int $page
      * @param int $pageSize
      * @param array|CoinsbankOperationFilter $filter
-     * @param array $sort Array, e.g. ['column_name1' => CSort::ASC, ...]
      * @param bool $exportPDF
      * @return CoinsbankResponse
      */
@@ -26,10 +25,9 @@ class CoinsbankOperation extends CoinsbankSapi
         $page = 0,
         $pageSize = CoinsbankRest::DEFAULT_PAGE_SIZE,
         $filter = [],
-        $sort = [],
         $exportPDF = false
     ) {
-        return $this->get(self::URL, compact('page', 'pageSize', 'filter', 'sort', 'exportPDF'));
+        return $this->get(self::URL, compact('page', 'pageSize', 'filter', 'exportPDF'));
     }
 
     /**

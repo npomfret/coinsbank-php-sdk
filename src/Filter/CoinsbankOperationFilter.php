@@ -2,6 +2,8 @@
 
 namespace Coinsbank\Filter;
 
+use Coinsbank\Constant\PaymentStatus;
+use Coinsbank\Constant\TradeStatus;
 use Coinsbank\Model\CoinsbankModel;
 
 /**
@@ -10,7 +12,6 @@ use Coinsbank\Model\CoinsbankModel;
  * @package Coinsbank\Filter
  *
  * @method CoinsbankOperationFilter setAccountId($value)
- * @method CoinsbankOperationFilter setAccountName($value)
  * @method CoinsbankOperationFilter setAmountFrom($value)
  * @method CoinsbankOperationFilter setAmountTo($value)
  * @method CoinsbankOperationFilter setCurrency($value)
@@ -42,11 +43,6 @@ class CoinsbankOperationFilter extends CoinsbankModel
      * @var string|string[] Wallet ID.
      */
     public $accountId;
-
-    /**
-     * @var string|string[] Wallet name.
-     */
-    public $accountName;
 
     /**
      * @var double
@@ -95,6 +91,8 @@ class CoinsbankOperationFilter extends CoinsbankModel
 
     /**
      * @var integer|integer[]
+     * @see TradeStatus
+     * @see PaymentStatus
      */
     public $status;
 
