@@ -5,6 +5,7 @@ namespace Coinsbank\Api;
 use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
 use Coinsbank\Filter\CoinsbankMerchantFilter;
+use Coinsbank\Model\CoinsbankMerchantPaymentModel;
 use Coinsbank\Model\CoinsbankMerchantInvoiceModel;
 use Coinsbank\Transport\CoinsbankResponse;
 
@@ -19,17 +20,6 @@ class CoinsbankMerchant extends CoinsbankSapi
     const URL_ACCEPT = self::URL . '/accept';
     const URL_ACTIVATE = self::URL . '/activate';
     const URL_FEE = self::URL . '/fee';
-
-    /**
-     * Accepts invoice.
-     *
-     * @param string $id Invoice ID.
-     * @return CoinsbankResponse
-     */
-    public function acceptInvoice($id)
-    {
-        return $this->put($this->getPathWithId(self::URL_ACCEPT, $id));
-    }
 
     /**
      * Activate merchant service.
@@ -61,6 +51,17 @@ class CoinsbankMerchant extends CoinsbankSapi
     public function createInvoice($data)
     {
         return $this->post(self::URL, $data);
+    }
+
+    /**
+     * Force invoice close.
+     *
+     * @param string $id Invoice ID.
+     * @return CoinsbankResponse
+     */
+    public function forceInvoiceClose($id)
+    {
+        return $this->put($this->getPathWithId(self::URL_ACCEPT, $id));
     }
 
     /**

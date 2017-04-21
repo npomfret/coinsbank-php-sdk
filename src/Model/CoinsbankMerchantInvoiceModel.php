@@ -3,7 +3,7 @@
 namespace Coinsbank\Model;
 
 /**
- * Class CoinsbankMerchantInvoice
+ * Class CoinsbankMerchantInvoiceModel
  *
  * @package Coinsbank\Model
  *
