@@ -5,7 +5,7 @@ namespace Coinsbank\Api;
 use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
 use Coinsbank\Filter\CoinsbankMerchantFilter;
-use Coinsbank\Model\CoinsbankMerchantInvoice;
+use Coinsbank\Model\CoinsbankMerchantInvoiceModel;
 use Coinsbank\Transport\CoinsbankResponse;
 
 /**
@@ -49,7 +49,7 @@ class CoinsbankMerchant extends CoinsbankSapi
     /**
      * Creates invoice.
      *
-     * @param array|CoinsbankMerchantInvoice $data
+     * @param array|CoinsbankMerchantInvoiceModel $data
      * @return CoinsbankResponse
      */
     public function createInvoice($data)
