@@ -54,7 +54,7 @@ class CoinsbankTrade extends CoinsbankSapi
      * @param double|null $takeProfit
      * @return CoinsbankResponse
      */
-    public function createNewOrder(
+    public function createOrder(
         $fromUserAccount,
         $toUserAccount,
         $amount,
