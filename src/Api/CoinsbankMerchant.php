@@ -5,7 +5,6 @@ namespace Coinsbank\Api;
 use Coinsbank\CoinsbankSapi;
 use Coinsbank\Constant\CoinsbankRest;
 use Coinsbank\Filter\CoinsbankMerchantFilter;
-use Coinsbank\Model\CoinsbankMerchantPaymentModel;
 use Coinsbank\Model\CoinsbankMerchantInvoiceModel;
 use Coinsbank\Transport\CoinsbankResponse;
 
@@ -57,11 +56,12 @@ class CoinsbankMerchant extends CoinsbankSapi
      * Force invoice close.
      *
      * @param string $id Invoice ID.
+     * @param string $currencyAccept Accepted customer's currency
      * @return CoinsbankResponse
      */
-    public function forceInvoiceClose($id)
+    public function forceInvoiceClose($id, $currencyAccept)
     {
-        return $this->put($this->getPathWithId(self::URL_ACCEPT, $id));
+        return $this->put($this->getPathWithId(self::URL_ACCEPT, $id), ['currencyaccept' => $currencyAccept]);
     }
 
     /**
