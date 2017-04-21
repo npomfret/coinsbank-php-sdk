@@ -16,6 +16,52 @@ use Coinsbank\Transport\CoinsbankResponse;
 class CoinsbankMerchant extends CoinsbankSapi
 {
     const URL = '/merchant';
+    const URL_ACCEPT = self::URL . '/accept';
+    const URL_ACTIVATE = self::URL . '/activate';
+    const URL_FEE = self::URL . '/fee';
+
+    /**
+     * Accepts invoice.
+     *
+     * @param string $id Invoice ID.
+     * @return CoinsbankResponse
+     */
+    public function acceptInvoice($id)
+    {
+        return $this->put($this->getPathWithId(self::URL_ACCEPT, $id));
+    }
+
+    /**
+     * Activate merchant service.
+     *
+     * @return CoinsbankResponse
+     */
+    public function activateMerchantService()
+    {
+        return $this->post(self::URL_ACTIVATE);
+    }
+
+    /**
+     * Cancels invoice.
+     *
+     * @param string $id Invoice ID.
+     * @return CoinsbankResponse
+     */
+    public function cancelInvoice($id)
+    {
+        return $this->delete($this->getPathWithId(self::URL, $id));
+    }
+
+    /**
+     * Creates invoice.
+     *
+     * @param array|CoinsbankMerchantInvoiceModel $data
+     * @return CoinsbankResponse
+     */
+    public function createInvoice($data)
+    {
+        return $this->post(self::URL, $data);
+    }
 
     /**
      * Returns invoices list.
@@ -36,9 +82,21 @@ class CoinsbankMerchant extends CoinsbankSapi
     }
 
     /**
+     * Returns merchant invoice fee.
+     *
+     * @param double $amount
+     * @param string $currency
+     * @return CoinsbankResponse
+     */
+    public function getFee($amount, $currency)
+    {
+        return $this->get(self::URL_FEE, ['amount' => $amount, 'currency' => $currency]);
+    }
+
+    /**
      * Returns invoice details.
      *
-     * @param string $id
+     * @param string $id Invoice ID.
      * @return CoinsbankResponse
      */
     public function getInvoiceData($id)
@@ -47,13 +105,12 @@ class CoinsbankMerchant extends CoinsbankSapi
     }
 
     /**
-     * Creates invoice.
+     * Returns status of merchant service (activated or not).
      *
-     * @param array|CoinsbankMerchantInvoiceModel $data
      * @return CoinsbankResponse
      */
-    public function createInvoice($data)
+    public function getMerchantServiceStatus()
     {
-        return $this->post(self::URL, $data);
+        return $this->get(self::URL_ACTIVATE);
     }
 }

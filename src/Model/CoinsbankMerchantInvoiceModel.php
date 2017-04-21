@@ -7,8 +7,6 @@ namespace Coinsbank\Model;
  *
  * @package Coinsbank\Model
  *
- * @method CoinsbankMerchantInvoiceModel setAcceptCrypto($value)
- * @method CoinsbankMerchantInvoiceModel setAcceptFiat($value)
  * @method CoinsbankMerchantInvoiceModel setAmount($value)
  * @method CoinsbankMerchantInvoiceModel setBuyerEmail($value)
  * @method CoinsbankMerchantInvoiceModel setBuyerPhone($value)
@@ -30,16 +28,6 @@ class CoinsbankMerchantInvoiceModel extends CoinsbankModel
 {
     const COMMISSION_TYPE_MERCHANT = 0;
     const COMMISSION_TYPE_ADDED_TO_PRICE = 1;
-
-    /**
-     * @var boolean
-     */
-    public $acceptCrypto = 1;
-
-    /**
-     * @var boolean
-     */
-    public $acceptFiat = 0;
 
     /**
      * @var double

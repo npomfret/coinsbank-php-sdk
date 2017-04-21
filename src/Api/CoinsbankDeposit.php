@@ -17,13 +17,13 @@ class CoinsbankDeposit extends CoinsbankSapi
 {
     const URL = '/wallet/deposit';
     const URL_AVAILABLE = self::URL . '/available';
+    const URL_DOCUMENT = self::URL . '/doc';
     const URL_FEE = self::URL . '/fee';
     const URL_FSC_VERIFICATION = self::URL . '/fscVerification';
-    const URL_DOCUMENT = self::URL . '/doc';
 
-    const FSC_DOC_TYPE_SELFIE = 'card_selfie';
-    const FSC_DOC_TYPE_FRONT = 'card_front';
     const FSC_DOC_TYPE_BACK = 'card_back';
+    const FSC_DOC_TYPE_FRONT = 'card_front';
+    const FSC_DOC_TYPE_SELFIE = 'card_selfie';
 
     /**
      * Cancels deposit.
