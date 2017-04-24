@@ -12,14 +12,12 @@ class CoinsbankTransactionType
     /**
      * Types
      */
-    // trading
     const TYPE_TRADE_COMMISSION = 3;
     const TYPE_TRADE_TRANSACTION_FEE = 4;
     const TYPE_TRADE = 5;
     const TYPE_TRADE_HOLD = 7;
     const TYPE_TRADE_HOLD_CANCELLED = 8;
 
-    // payments
     const TYPE_PAYMENTS_WITHDRAWAL = 10;
     const TYPE_PAYMENTS_DEPOSIT = 11;
     const TYPE_PAYMENTS_DEPOSIT_COMMISSION = 13;
@@ -27,7 +25,6 @@ class CoinsbankTransactionType
     const TYPE_PAYMENTS_SYSTEM_DEPOSIT = 15;
     const TYPE_PAYMENTS_SYSTEM_WITHDRAWAL = 17;
 
-    // transfer
     const TYPE_TRANSFER_FUNDS_TO_SELF = 20;
     const TYPE_TRANSFER_FUNDS_TO_OTHER = 21;
     const TYPE_TRANSFER_COMMISSION = 23;
@@ -36,11 +33,9 @@ class CoinsbankTransactionType
     const TYPE_TRANSFER_FUNDS_TO_SELF_RECEIVE = 26;
     const TYPE_TRANSFER_FUNDS_TO_OTHER_RECEIVE = 27;
 
-    // gift
     const TYPE_GIFT_APPLY = 42;
     const TYPE_GIFT_ONETIME = 43;
 
-    // card operations
     const TYPE_CARD_HOLD = 52;
     const TYPE_CARD_PARTNER_TRANSFER = 53;
     const TYPE_CARD_ISSUANCE = 54;
@@ -49,7 +44,6 @@ class CoinsbankTransactionType
     const TYPE_CARD_CANCEL = 57;
     const TYPE_CARD_COMMISSION_CARD_ISSUE = 58;
     const TYPE_CARD_PROCESS = 59;
-
     const TYPE_CARD_COMMISSION_COINSBANK = 60;
     const TYPE_CARD_COMMISSION_MAINTENANCE = 61;
     const TYPE_CARD_COMMISSION_COINSBANK_FIXED = 62;
@@ -81,7 +75,7 @@ class CoinsbankTransactionType
      * Type groups.
      */
     const TYPE_GROUP_TRADE = 1;
-    const TYPE_GROUP_PAYMENTS = 2;
+    const TYPE_GROUP_DEPOSITS = 2;
     const TYPE_GROUP_WITHDRAWALS = 3;
     const TYPE_GROUP_CARDS = 5;
     const TYPE_GROUP_USERS = 6;
