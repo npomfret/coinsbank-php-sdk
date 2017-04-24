@@ -75,9 +75,9 @@ class CoinsbankTransactionType
      * Type groups.
      */
     const TYPE_GROUP_TRADE = 1;
-    const TYPE_GROUP_DEPOSITS = 2;
-    const TYPE_GROUP_WITHDRAWALS = 3;
-    const TYPE_GROUP_CARDS = 5;
-    const TYPE_GROUP_USERS = 6;
+    const TYPE_GROUP_DEPOSIT = 2;
+    const TYPE_GROUP_WITHDRAWAL = 3;
+    const TYPE_GROUP_CARD = 5;
+    const TYPE_GROUP_USER = 6;
     const TYPE_GROUP_MERCHANT = 7;
 }
