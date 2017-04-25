@@ -1,4 +1,4 @@
-Coinsbank PHP SDK for RESTful APIs
+Coinsbank PHP SDK for RESTful API
 =======================
 
 ```php
@@ -68,7 +68,7 @@ $depositApi = new CoinsbankDeposit($contextAuthorized);
 $response = $depositApi->createDeposit($depositModelSEPA);
 ```
 
-## Installing Coinsbank
+## Installing Coinsbank SDK
 
 The recommended way to install Coinsbank is through
 [Composer](http://getcomposer.org).
@@ -94,4 +94,13 @@ You can then later update Coinsbank SDK using composer:
 
  ```bash
 composer.phar update
+ ``` 
+ 
+ See 
+ ```
+ examples/examples.php
+ ```
+ and
+ ```
+ reference/coinsbank-sapi.json
  ```
