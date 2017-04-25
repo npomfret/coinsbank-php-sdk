@@ -3,6 +3,7 @@
 namespace Coinsbank\Api;
 
 use Coinsbank\CoinsbankSapi;
+use Coinsbank\Transport\CoinsbankResponse;
 
 /**
  * Class CoinsbankFile
@@ -18,7 +19,7 @@ class CoinsbankFile extends CoinsbankSapi
      *
      * @param string $fileKey File key, in response after uploading file, param "key".
      * @param string $fileName File name, in response after uploading file, param "filename".
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function deleteFile($fileKey, $fileName)
     {
@@ -30,7 +31,7 @@ class CoinsbankFile extends CoinsbankSapi
      *
      * @param string $fileKey File key, in response after uploading file, param "key".
      * @param string $fileName File name, in response after uploading file, param "filename".
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function getFile($fileKey, $fileName)
     {
@@ -42,7 +43,7 @@ class CoinsbankFile extends CoinsbankSapi
      *
      * @param string $fileName
      * @param string $fileContent
-     * @return \Coinsbank\Transport\CoinsbankResponse
+     * @return CoinsbankResponse
      */
     public function uploadFile($fileName, $fileContent)
     {

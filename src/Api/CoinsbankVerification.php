@@ -6,6 +6,7 @@ use Coinsbank\CoinsbankSapi;
 
 /**
  * Class CoinsbankVerification
+ *
  * @package Coinsbank\Api
  */
 class CoinsbankVerification extends CoinsbankSapi

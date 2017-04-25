@@ -15,8 +15,8 @@ use Coinsbank\Transport\CoinsbankResponse;
 class CoinsbankTrade extends CoinsbankSapi
 {
     const URL = '/trade';
-    const URL_HISTORY = self::URL . '/closing';
     const URL_FEE = self::URL . '/fee';
+    const URL_HISTORY = self::URL . '/closing';
 
     const DIRECTION_BUY = 'buy';
     const DIRECTION_SELL = 'sell';
@@ -27,9 +27,9 @@ class CoinsbankTrade extends CoinsbankSapi
     const QUOTE_FROM = 0;
     const QUOTE_TO = 1;
 
-    const ACTION_RESET_TP = 'resettp';
     const ACTION_RESET_SL = 'resetsl';
     const ACTION_RESET_SL_TP = 'resetsltp';
+    const ACTION_RESET_TP = 'resettp';
 
     /**
      * Cancels trade order.
@@ -54,7 +54,7 @@ class CoinsbankTrade extends CoinsbankSapi
      * @param double|null $takeProfit
      * @return CoinsbankResponse
      */
-    public function createNewOrder(
+    public function createOrder(
         $fromUserAccount,
         $toUserAccount,
         $amount,

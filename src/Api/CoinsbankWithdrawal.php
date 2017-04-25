@@ -16,8 +16,8 @@ class CoinsbankWithdrawal extends CoinsbankSapi
     const URL = '/wallet/withdrawal';
     const URL_AVAILABLE = self::URL . '/available';
     const URL_FEE = self::URL . '/fee';
-    const URL_TRANSFER = '/wallet/transfer';
     const URL_GIFT = self::URL_TRANSFER . '/gift';
+    const URL_TRANSFER = '/wallet/transfer';
 
     /**
      * Activates gifts (CBE with not registered address - email or login).
