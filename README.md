@@ -96,11 +96,14 @@ You can then later update Coinsbank SDK using composer:
 composer.phar update
  ``` 
  
- See 
+ See:
  ```
  examples/examples.php
+ examples/example-curl-new-merchant-invoice.sh
  ```
- and
+
+
+ Specification available in Swagger 2.0 file:
  ```
  reference/coinsbank-sapi.json
  ```
