@@ -1739,6 +1739,17 @@
             "type": "number"
           },
           {
+            "name": "direction",
+            "in": "body",
+            "description": "Order direction: 'buy' or 'sell' ",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "'buy' - buy pair's base currency",
+              "'sell' - sell pair's base currency"
+            ]
+          },
+          {
             "name": "stopLoss",
             "in": "body",
             "description": "Exchange rate for stop-loss trigger",
@@ -1759,8 +1770,8 @@
             "required": true,
             "type": "number",
             "enum": [
-              "0 - account take currency from. Ex., if during trade user spends USD, take trade fee in USD",
-              "1 - account get currency to. Ex., if during trade user acquires BTC, take trade fee in BTC"
+              "0 - account take currency from. Ex., if during the trades user spends USD, fee will be taken in USD",
+              "1 - account get currency to. Ex., if during the trades user acquires BTC, fee will be taken in BTC"
             ]
           }
         ],
@@ -4620,6 +4631,7 @@
         }
       }
     },
+
     "TradeFee": {
       "properties": {
         "commissionAmount": {
@@ -4708,7 +4720,7 @@
         },
         "status": {
           "type": "integer",
-          "description": "Order status"
+          "description": "Order status (0 - initial, 1 - open, 2 - closed, 3 - cancelled, 5 - waiting for Take Profit rate, 6 - waiting for Stop Loss rate)"
         },
         "direction": {
           "type": "boolean",
