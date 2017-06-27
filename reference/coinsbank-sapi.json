@@ -547,7 +547,7 @@
             "schema": {
               "properties": {
                 "name": {
-                  "type": "srting",
+                  "type": "string",
                   "description": "User-defined card name"
                 }
               }
