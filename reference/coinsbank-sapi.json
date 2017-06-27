@@ -634,49 +634,49 @@
             "in": "body",
             "description": "Currency to pay for invoice",
             "required": true,
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           },
           {
             "name": "customerFullName",
             "in": "body",
             "required": false,
             "description": "Payee name",
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           },
           {
             "name": "customerAddress",
             "in": "body",
             "required": false,
             "description": "Billing address: stree, building, etc",
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           },
           {
             "name": "customerCity",
             "in": "body",
             "required": false,
             "description": "Billing address: city",
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           },
           {
             "name": "customerCountry",
             "in": "body",
             "required": false,
             "description": "Billing address: country",
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           },
           {
             "name": "customerZip",
             "in": "body",
             "required": false,
             "description": "Billing address: postal (ZIP) code",
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           },
           {
             "name": "customerRegion",
             "in": "body",
             "required": false,
             "description": "Billing address: region/state",
-            "type": "string"
+            "schema": {"properties": {}, "type": "string"}
           }
         ],
         "responses": {
@@ -715,7 +715,7 @@
             "in": "body",
             "description": "Account UID. Should be owned by or available for current user",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -796,8 +796,7 @@
             "in": "body",
             "description": "Temporary filename",
             "required": true,
-            "schema": null,
-            "schema:type": "string"
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -1175,126 +1174,126 @@
             "in": "body",
             "required": true,
             "description": "Invoice amount",
-            "type": "number"
+            "schema": {"type": "string"}
           },
           {
             "name": "currency",
             "in": "body",
             "required": true,
             "description": "Invoice currency",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "serviceName",
             "in": "body",
             "required": true,
             "description": "Invoice caption/name",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "serviceDescription",
             "in": "body",
             "required": true,
             "description": "Invoice description",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "merchantNumber",
             "in": "body",
             "required": true,
             "description": "Invoice ID in merchant's system",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "ttl",
             "in": "body",
             "required": true,
             "description": "Invoice expiry in seconds",
-            "type": "integer"
+            "schema": {"type": "integer"}
           },
           {
             "name": "buyerEmail",
             "in": "body",
             "required": true,
             "description": "Payee email address",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "buyerPhone",
             "in": "body",
             "required": false,
             "description": "Payee phone number",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "acceptCrypto",
             "in": "body",
             "required": true,
             "description": "Accept crypto as payment",
-            "type": "boolean"
+            "schema": {"type": "boolean"}
           },
           {
             "name": "currencyWish",
             "in": "body",
             "required": false,
             "description": "Currency to get after payment. Will be automatically converted if differs from invoice currency",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "acceptFiat",
             "in": "body",
             "required": true,
             "description": "Accept fiat as payment",
-            "type": "boolean"
+            "schema": {"type": "boolean"}
           },
           {
             "name": "customerAddress",
             "in": "body",
             "required": false,
             "description": "Billing address: street, building, etc",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "customerFullName",
             "in": "body",
             "required": false,
             "description": "Payee full name",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "customerCity",
             "in": "body",
             "required": false,
             "description": "Billing address: city",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "customerCountry",
             "in": "body",
             "required": false,
             "description": "Billing address: country",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "customerZip",
             "in": "body",
             "required": false,
             "description": "Billing address: postal (ZIP) code",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "customerRegion",
             "in": "body",
             "required": false,
             "description": "Billing address: region/state",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "commissionType",
             "in": "body",
             "required": false,
             "description": "Include CoinsBank fee to invoice or not",
-            "type": "number",
+            "schema": {"type": "number"},
             "default": 0,
             "enum": ["0 - fee will be taken from merchant", "1 - fee will be included to invoice"]
           }
@@ -1344,7 +1343,7 @@
             "in": "body",
             "description": "currencyfixed params from invoice details",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -1715,49 +1714,49 @@
             "in": "body",
             "description": "Exchange rate for limit order. Market order if not set.",
             "required": false,
-            "type": "number"
+            "schema": {"type": "number"}
           },
           {
             "name": "fromUserAccount",
             "in": "body",
             "description": "Account UID to get funds",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "toUserAccount",
             "in": "body",
             "description": "Account UID to put funds",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "amount",
             "in": "body",
             "description": "Amount in base currency",
             "required": true,
-            "type": "number"
+            "schema": {"type": "number"}
           },
           {
             "name": "stopLoss",
             "in": "body",
             "description": "Exchange rate for stop-loss trigger",
             "required": false,
-            "type": "number"
+            "schema": {"type": "number"}
           },
           {
             "name": "takeProfit",
             "in": "body",
             "description": "Exchange rate for take-profit trigger",
             "required": false,
-            "type": "number"
+            "schema": {"type": "number"}
           },
           {
             "name": "commissionType",
             "in": "body",
             "description": "Take trade fee from account",
             "required": true,
-            "type": "number",
+            "schema": {"type": "number"},
             "enum": [
               "0 - account take currency from. Ex., if during trade user spends USD, take trade fee in USD",
               "1 - account get currency to. Ex., if during trade user acquires BTC, take trade fee in BTC"
@@ -1954,7 +1953,7 @@
             "in": "body",
             "description": "Action to perform",
             "required": true,
-            "type": "string",
+            "schema": {"type": "string"},
             "enum": ["resettp", "resetsl", "resetsltp"]
           }
         ],
@@ -2638,7 +2637,7 @@
             "in": "body",
             "description": "Base curency",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2698,21 +2697,21 @@
             "in": "body",
             "description": "Account name",
             "required": false,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "currency",
             "in": "body",
             "description": "Currency",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "multiSign",
             "in": "body",
             "description": "For future usage",
             "required": false,
-            "type": "string"
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2747,7 +2746,7 @@
             "in": "body",
             "description": "Account name",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -2781,7 +2780,7 @@
             "description": "Amount of deposit",
             "required": true,
             "schema": {
-              "type": "float"
+              "type": "number"
             }
           },
           {
@@ -3031,35 +3030,37 @@
           {
             "name": "amount",
             "in": "body",
-            "type": "float",
             "description": "Amount of transfer",
-            "required": true
+            "required": true,
+            "schema": {"type": "number"}
           },
           {
             "name": "accountId",
             "in": "body",
             "description": "Account UID",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "address",
             "in": "body",
             "description": "Transfer destination. Could by another customer UID, email address or phone number",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "direction",
             "in": "body",
             "description": "Type of transfer: 1 - to another customer, 0 - to owned account",
-            "required": true
+            "required": true,
+            "schema": {"type": "string"}
           },
           {
             "name": "comment",
             "in": "body",
             "description": "comment",
-            "required": false
+            "required": false,
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
@@ -3103,126 +3104,126 @@
             "in": "body",
             "description": "Account UID",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "paymentSystem",
             "in": "body",
             "description": "Payment system. CRP, PPL, WRT, SEP, PMO, QWI, OKP, WMY",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "amount",
             "in": "body",
             "description": "Withdrawal amount",
             "required": true,
-            "type": "float"
+            "schema": {"type": "number"}
           },
           {
             "name": "currency",
             "in": "body",
             "description": "Withdrawal currency",
             "required": true,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "address",
             "in": "body",
             "description": "Crypto-address for withdrawal",
             "required": "true if crypto",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "comment",
             "in": "body",
             "description": "Comment",
             "required": false,
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "beneficiaryName",
             "in": "body",
             "description": "Beneficiary name",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "beneficiaryAddress",
             "in": "body",
             "description": "Beneficiary address",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "iban",
             "in": "body",
             "description": "Account Number/IBAN",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "swift",
             "in": "body",
             "description": "SWIFT/ABA",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "bankName",
             "in": "body",
             "description": "Name of the Bank",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "bankAddress",
             "in": "body",
             "description": "Bank Address",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "bankABA",
             "in": "body",
             "description": "Bank ABA",
             "required": "true for bank",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "beneficiaryCity",
             "in": "body",
             "description": "City",
             "required": "true for WU",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "beneficiaryCountry",
             "in": "body",
             "description": "Country",
             "required": "true for WU",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "cardNumber",
             "in": "body",
             "description": "card number",
             "required": "true for Credit card",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "expirationDate",
             "in": "body",
             "description": "expiration date",
             "required": "true for Credit Card",
-            "type": "string"
+            "schema": {"type": "string"}
           },
           {
             "name": "urgent",
             "in": "body",
             "description": "Urgent for extra fee",
             "required": false,
-            "type": "boolean"
+            "schema": {"type": "boolean"}
           }
         ],
         "responses": {
