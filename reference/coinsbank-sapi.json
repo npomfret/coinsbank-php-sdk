@@ -634,49 +634,49 @@
             "in": "body",
             "description": "Currency to pay for invoice",
             "required": true,
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           },
           {
             "name": "customerFullName",
             "in": "body",
             "required": false,
             "description": "Payee name",
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           },
           {
             "name": "customerAddress",
             "in": "body",
             "required": false,
             "description": "Billing address: stree, building, etc",
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           },
           {
             "name": "customerCity",
             "in": "body",
             "required": false,
             "description": "Billing address: city",
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           },
           {
             "name": "customerCountry",
             "in": "body",
             "required": false,
             "description": "Billing address: country",
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           },
           {
             "name": "customerZip",
             "in": "body",
             "required": false,
             "description": "Billing address: postal (ZIP) code",
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           },
           {
             "name": "customerRegion",
             "in": "body",
             "required": false,
             "description": "Billing address: region/state",
-            "schema": {"properties": {}, "type": "string"}
+            "schema": {"type": "string"}
           }
         ],
         "responses": {
