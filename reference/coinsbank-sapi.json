@@ -1742,11 +1742,13 @@
             "in": "body",
             "description": "Order direction: 'buy' or 'sell' ",
             "required": true,
-            "type": "string",
-            "enum": [
-              "'buy' - buy pair's base currency",
-              "'sell' - sell pair's base currency"
-            ]
+            "schema": {
+              "type": "string",
+              "enum": [
+                "buy",
+                "sell"
+              ]
+            }
           },
           {
             "name": "stopLoss",
@@ -2042,10 +2044,10 @@
           {
             "name": "commissionType",
             "in": "query",
-            "description": "Take fee from currency",
+            "description": "Take fee from currency, 0 - by fromUserAccount, 1 - by toUserAccount",
             "required": true,
             "type": "number",
-            "enum": ["0 - by fromUserAccount", "1 - by toUserAccount"]
+            "enum": ["0", "1"]
           }
         ],
         "responses": {
