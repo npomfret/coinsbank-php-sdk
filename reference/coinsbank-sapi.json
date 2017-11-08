@@ -5127,7 +5127,7 @@
         },
         "time_create": {
           "description": "Time of creating",
-          "type": "integer"
+          "type": "string"
         },
         "comment": {
           "description": "comment",
@@ -5138,9 +5138,9 @@
           "type": "object"
         },
         "currency": {
-          "description": "currency (EUR, USD, GBP)",
+          "description": "currency",
           "type": "string",
-          "enum": ["EUR", "USD", "GBP"]
+          "enum": ["EUR", "USD", "GBP", "BTC", "LTC", "RUB"]
         },
         "type": {
           "description": "Transaction type",
@@ -5333,9 +5333,9 @@
           "enum": ["Crypto", "Fiat"]
         },
         "currency": {
-          "description": "Currency (EUR, USD, GBP)",
+          "description": "Currency",
           "type": "string",
-          "enum": ["EUR", "USD", "GBP"]
+          "enum": ["EUR", "USD", "GBP", "BTC", "LTC", "RUB"]
         },
         "unique_id": {
           "type": "string",
